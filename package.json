@@ -1,0 +1,22 @@
+{
+  "name": "switchselector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SwitchSelector.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/App2Sales/SwitchSelector.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/App2Sales/SwitchSelector/issues"
+  },
+  "homepage": "https://github.com/App2Sales/SwitchSelector#readme"
+}
