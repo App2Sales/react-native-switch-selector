@@ -1,5 +1,5 @@
 {
-  "name": "switchselector",
+  "name": "react-native-switch-selector",
   "version": "1.0.0",
   "description": "",
   "main": "SwitchSelector.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/App2Sales/SwitchSelector.git"
+    "url": "git+https://github.com/App2Sales/react-native-switch-selector"
   },
   "keywords": [
     "react-native"
@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/App2Sales/SwitchSelector/issues"
+    "url": "https://github.com/App2Sales/react-native-switch-selector/issues"
   },
-  "homepage": "https://github.com/App2Sales/SwitchSelector#readme"
+  "homepage": "https://github.com/App2Sales/react-native-switch-selector#readme"
 }
