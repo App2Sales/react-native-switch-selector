@@ -4,23 +4,23 @@ Switch Selector to React Native.
 
 ### Installing
 
-```
+```Shell
 yarn add react-native-switch-selector
 ```
 
 or
 
-```
+```Shell
 npm i react-native-switch-selector --save
 ```
 
 ### Usage
 
-```
+```js
 import SwitchSelector from 'react-native-switch-selector'
 ```
 
-```
+```js
 const options = [
     { label: '01:00', value: '1' },
     { label: '01:30', value: '1.5' },
@@ -28,7 +28,7 @@ const options = [
 ];
 ```
 
-```
+```js
 <SwitchSelector options={options} initial={0}>
 ```
 
