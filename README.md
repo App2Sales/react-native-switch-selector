@@ -31,6 +31,9 @@ const options = [
 ```js
 <SwitchSelector options={options} initial={0}>
 ```
+### SwitchSelector 
+
+![SwitchSelector](/assets/ex1.gif)
 
 ### Props
 
