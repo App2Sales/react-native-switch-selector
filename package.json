@@ -1,6 +1,6 @@
 {
     "name": "react-native-switch-selector",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Switch Selector to React Native.",
     "main": "SwitchSelector.js",
     "scripts": {
@@ -13,7 +13,10 @@
     "keywords": [
         "react-native"
     ],
-    "contributors": ["Lucas Santana Carneiro <jkdrangel@hotmail.com> (https://github.com/jkdrangel)", "Cassio Silva de Sá Santos <sss.cassio@gmail.com> (https://github.com/ssscassio)"],
+    "contributors": [
+        "Lucas Santana Carneiro <jkdrangel@hotmail.com> (https://github.com/jkdrangel)",
+        "Cassio Silva de Sá Santos <sss.cassio@gmail.com> (https://github.com/ssscassio)"
+    ],
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/App2Sales/react-native-switch-selector/issues"
