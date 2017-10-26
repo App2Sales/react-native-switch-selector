@@ -6,6 +6,11 @@ Switch Selector to React Native.
 
 ![SwitchSelector](/assets/ex1.gif)
 
+
+### SwitchSelector - Custom Example
+
+![SwitchSelector](/assets/ex2.gif)
+
 ### Installing
 
 ```Shell
