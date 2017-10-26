@@ -40,7 +40,11 @@ const options = [
 
 |   Prop   |      Type     |  Default |     Required     | Note |
 |----------|---------------|--------- |--------------|---|
-| options |  array |   null  |      true    |  Items array to render. Each item has a label and a value |
+| options |  array |   null  |      true    |  Items array to render. Each item has a label and a value and optionals icons |
+| options[].label |  string |   null  |      true    |  Label from each item |
+| options[].value |  string |   null  |      true    |  Value from each item |
+| options[].customIcon |  Jsx element |   null  |      false    |  Optional custom icon from each item |
+| options[].imageIcon |  string |   null  |      false    |  Source from a image icon form each item. Has the same color then label in render |
 | initial |    number   |   null    |       true       | Item selected in initial render |
 | fontSize | number |    null    |        false      | Font size from labels. If null default fontSize of the app is used. |
 | selectedColor | string |    '#fff'    |        false      | Color text of the item selected |
@@ -48,3 +52,4 @@ const options = [
 | textColor | string |    '#000'    |        false      | Color text of the not selecteds items |
 | backgroundColor | string |    '#ffffff'    |        false      | Color bg of the component |
 | borderColor | string |    '#c9c9c9'    |        false      | Border Color of the component |
+| hasPadding | bool |    false    |        false      | Indicate if item has padding |
