@@ -58,7 +58,7 @@ export default class SwitchSelector extends Component {
         });
         const options = this.props.options.map((element, index) =>
             <View key={index} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} hitSlop={{ top: 30, bottom: 30, left: 10, right: 10 }} onPress={() => this.SwitchSelector(index)}>
+                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} hitSlop={{ left: 10, right: 10 }} onPress={() => this.SwitchSelector(index)}>
                     {element.customIcon}
                     {element.imageIcon && <Image source={element.imageIcon} style={{ height: 30, width: 30, tintColor: this.state.selected == index ? selectedColor || '#fff' : textColor || '#000' }} />}
                     <Text style={{ fontSize, textAlign: 'center', color: this.state.selected == index ? selectedColor || '#fff' : textColor || '#000', backgroundColor: 'transparent' }}>{element.label}</Text>
