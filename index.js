@@ -54,7 +54,7 @@ export default class SwitchSelector extends Component {
 
         const left = this.animatedValue.interpolate({
             inputRange: [0, 1],
-            outputRange: [(hasPadding?3:0), this.state.sliderWidth - (hasPadding?3:0)]
+            outputRange: [(hasPadding ? 3 : 0), this.state.sliderWidth - (hasPadding ? 3 : 0)]
         });
         const options = this.props.options.map((element, index) =>
             <View key={index} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
@@ -72,17 +72,17 @@ export default class SwitchSelector extends Component {
                     <View style={{ borderRadius: 50, backgroundColor: backgroundColor || '#ffffff', height: 40 }}
                         onLayout={(event) => {
                             var { x, y, width, height } = event.nativeEvent.layout;
-                            this.setState({ sliderWidth: (width - (hasPadding?3:0)) });
+                            this.setState({ sliderWidth: (width - (hasPadding ? 3 : 0)) });
                         }}>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: 1 }}>
                             <Animated.View ref="switcher" style={{
                                 borderRadius: 50,
                                 borderWidth: 0,
-                                height: (hasPadding?34:40),
-                                backgroundColor: buttonColor || '#BCD635', width: (this.state.sliderWidth / this.props.options.length) - (hasPadding?2:0),
+                                height: (hasPadding ? 34 : 40),
+                                backgroundColor: buttonColor || '#BCD635', width: (this.state.sliderWidth / this.props.options.length) - (hasPadding ? 2 : 0),
                                 position: 'absolute',
                                 left: left,
-                                marginTop: (hasPadding?2:0)
+                                marginTop: (hasPadding ? 2 : 0)
                             }} />
                             {options}
                         </View>
