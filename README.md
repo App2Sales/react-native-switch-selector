@@ -50,7 +50,7 @@ const options = [
 | options[].value |  string |   null  |      true    |  Value from each item |
 | options[].customIcon |  Jsx element |   null  |      false    |  Optional custom icon from each item |
 | options[].imageIcon |  string |   null  |      false    |  Source from a image icon form each item. Has the same color then label in render |
-| initial |    number   |   null    |       true       | Item selected in initial render |
+| initial |    number   |   0    |       true       | Item selected in initial render |
 | onPress |    function   |   console.log    |       true       | Callback function called after change value. |
 | fontSize | number |    null    |        false      | Font size from labels. If null default fontSize of the app is used. |
 | selectedColor | string |    '#fff'    |        false      | Color text of the item selected |

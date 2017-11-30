@@ -17,9 +17,9 @@ export default class SwitchSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: this.props.initial,
+            selected: this.props.initial ? this.props.initial : 0,
         }
-        this.animatedValue = new Animated.Value(this.props.initial / this.props.options.length)
+        this.animatedValue = new Animated.Value(this.props.initial ? (this.props.initial / this.props.options.length) : 0)
     }
 
     animate = (value, last) => {
@@ -37,9 +37,9 @@ export default class SwitchSelector extends Component {
     SwitchSelector = (index) => {
         if (this.props.options.length <= 1) return;
         this.animate(index / this.props.options.length, this.state.selected / this.props.options.length);
-        if(this.props.onPress){
+        if (this.props.onPress) {
             this.props.onPress(this.props.options[index].value);
-        }else {
+        } else {
             console.log("Call onPress with value: ", this.props.options[index].value)
         }
         this.setState({ selected: index });
