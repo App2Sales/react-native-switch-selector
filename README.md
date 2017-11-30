@@ -38,7 +38,7 @@ const options = [
 ```
 
 ```js
-<SwitchSelector options={options} initial={0} onPress={value => console.log("Call onPress with value: ", value)}>
+<SwitchSelector options={options} initial={0} onPress={value => console.log("Call onPress with value: ", value)}/>
 ```
 
 ### Props
