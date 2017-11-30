@@ -38,7 +38,7 @@ const options = [
 ```
 
 ```js
-<SwitchSelector options={options} initial={0}>
+<SwitchSelector options={options} initial={0} onPress={value => console.log("Call onPress with value: ", value)}>
 ```
 
 ### Props
@@ -51,6 +51,7 @@ const options = [
 | options[].customIcon |  Jsx element |   null  |      false    |  Optional custom icon from each item |
 | options[].imageIcon |  string |   null  |      false    |  Source from a image icon form each item. Has the same color then label in render |
 | initial |    number   |   null    |       true       | Item selected in initial render |
+| onPress |    function   |   console.log    |       true       | Callback function called after change value. |
 | fontSize | number |    null    |        false      | Font size from labels. If null default fontSize of the app is used. |
 | selectedColor | string |    '#fff'    |        false      | Color text of the item selected |
 | buttonColor | string |    '#BCD635'    |        false      | Color bg of the item selected |

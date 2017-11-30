@@ -37,7 +37,11 @@ export default class SwitchSelector extends Component {
     SwitchSelector = (index) => {
         if (this.props.options.length <= 1) return;
         this.animate(index / this.props.options.length, this.state.selected / this.props.options.length);
-        this.props.onPress(this.props.options[index].value);
+        if(this.props.onPress){
+            this.props.onPress(this.props.options[index].value);
+        }else {
+            console.log("Call onPress with value: ", this.props.options[index].value)
+        }
         this.setState({ selected: index });
     }
 
