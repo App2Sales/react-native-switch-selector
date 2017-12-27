@@ -88,7 +88,7 @@ export default class SwitchSelector extends Component {
                             this.setState({ sliderWidth: (width - (hasPadding ? 3 : 0)) });
                         }}>
                         <View style={{
-                            flex: 1, flexDirection: 'row', justifyContent: 'center', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: 1
+                            flex: 1, flexDirection: 'row', justifyContent: 'center', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: hasPadding ? 1 : 0
                         }}>
                             <Animated.View
                                 style={{
