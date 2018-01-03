@@ -1,6 +1,10 @@
 # SwitchSelector
 
-Switch Selector to React Native. 
+Switch Selector to React Native.
+
+[![npm version](https://badge.fury.io/js/react-native-switch-selector.svg)](https://badge.fury.io/js/react-native-switch-selector)
+ <a href="https://www.npmjs.com/package/react-native-gifted-chat">
+  <img alt="npm dowloads" src="https://img.shields.io/npm/dm/react-native-switch-selector.svg"/></a>
 
 ### SwitchSelector 
 
