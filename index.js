@@ -43,7 +43,8 @@ export default class SwitchSelector extends Component {
             {
                 toValue: value,
                 duration: 250,
-                easing: Easing.cubic
+                easing: Easing.cubic,
+                useNativeDriver: true,
             }
         ).start();
     }
@@ -72,10 +73,6 @@ export default class SwitchSelector extends Component {
             hasPadding
         } = this.props;
 
-        const left = this.animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [(hasPadding ? 3 : 0), this.state.sliderWidth - (hasPadding ? 3 : 0)]
-        });
         const options = this.props.options.map((element, index) =>
             (
                 <View key={index} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
@@ -100,17 +97,34 @@ export default class SwitchSelector extends Component {
                             this.setState({ sliderWidth: (width - (hasPadding ? 3 : 0)) });
                         }}>
                         <View style={{
-                            flex: 1, flexDirection: 'row', justifyContent: 'center', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: hasPadding ? 1 : 0
+                            flex: 1, flexDirection: 'row', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: hasPadding ? 1 : 0
                         }}>
+                        {this.state.sliderWidth && (
                             <Animated.View
-                                style={[{
-                                    height: (hasPadding ? 34 : 40),
-                                    backgroundColor: this.getBgColor(),
-                                    width: (this.state.sliderWidth / this.props.options.length) - (hasPadding ? 2 : 0),
-                                    left,
-                                    marginTop: (hasPadding ? 2 : 0)
-                                }, styles.animated]} />
-                            {options}
+                              style={[
+                                {
+                                  height: hasPadding ? 34 : 40,
+                                  backgroundColor: this.getBgColor(),
+                                  width:
+                                    this.state.sliderWidth / this.props.options.length - (hasPadding ? 2 : 0),
+                                  transform: [
+                                    {
+                                      translateX: this.animatedValue.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [
+                                          hasPadding ? 3 : 0,
+                                          this.state.sliderWidth - (hasPadding ? 3 : 0),
+                                        ],
+                                      }),
+                                    },
+                                  ],
+                                  marginTop: hasPadding ? 2 : 0,
+                                },
+                                styles.animated,
+                              ]}
+                            />
+                          )}
+                          {options}
                         </View>
                     </View>
                 </View>
