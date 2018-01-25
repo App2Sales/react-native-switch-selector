@@ -5,7 +5,8 @@ import {
     Animated,
     TouchableOpacity,
     Easing,
-    Image
+    Image,
+    I18nManager
 } from 'react-native';
 
 const styles = {
@@ -52,8 +53,8 @@ export default class SwitchSelector extends Component {
     toggleItem = (index) => {
         if (this.props.options.length <= 1) return;
         this.animate(
-            index / this.props.options.length,
-            this.state.selected / this.props.options.length
+            I18nManager.isRTL ? -(index / this.props.options.length) : (index / this.props.options.length),
+            I18nManager.isRTL ? -(this.state.selected / this.props.options.length) : (this.state.selected / this.props.options.length)
         );
         if (this.props.onPress) {
             this.props.onPress(this.props.options[index].value);
