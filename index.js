@@ -28,7 +28,7 @@ export default class SwitchSelector extends Component {
             selected: this.props.initial ? this.props.initial : 0
         };
         this.animatedValue = new Animated
-            .Value(this.props.initial ? (this.props.initial / this.props.options.length) : 0);
+            .Value(this.props.initial ? (I18nManager.isRTL ? -(this.props.initial / this.props.options.length) : (this.props.initial / this.props.options.length)) : 0);
     }
 
     getBgColor() {
