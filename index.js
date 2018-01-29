@@ -95,7 +95,7 @@ export default class SwitchSelector extends Component {
                         style={{ borderRadius: 50, backgroundColor: backgroundColor, height: 40 }}
                         onLayout={(event) => {
                             const { width } = event.nativeEvent.layout;
-                            this.setState({ sliderWidth: (width - (hasPadding ? 3 : 0)) });
+                            this.setState({ sliderWidth: (width - (hasPadding ? 2 : 0)) });
                         }}>
                         <View style={{
                             flex: 1, flexDirection: 'row', borderColor: borderColor || '#c9c9c9', borderRadius: 60, borderWidth: hasPadding ? 1 : 0
@@ -113,8 +113,8 @@ export default class SwitchSelector extends Component {
                                       translateX: this.animatedValue.interpolate({
                                         inputRange: [0, 1],
                                         outputRange: [
-                                          hasPadding ? 3 : 0,
-                                          this.state.sliderWidth - (hasPadding ? 3 : 0),
+                                          hasPadding ? 2 : 0,
+                                          this.state.sliderWidth - (hasPadding ? 2 : 0),
                                         ],
                                       }),
                                     },
