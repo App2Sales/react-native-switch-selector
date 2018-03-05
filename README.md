@@ -64,3 +64,12 @@ const options = [
 | backgroundColor | string |    '#ffffff'    |        false      | Color bg of the component |
 | borderColor | string |    '#c9c9c9'    |        false      | Border Color of the component |
 | hasPadding | bool |    false    |        false      | Indicate if item has padding |
+
+### Authors
+
+ - Lucas Santana Carneiro - [jkdrangel](https://github.com/jkdrangel)
+ - Cássio Silva de Sá Santos - [ssscassio](https://github.com/ssscassio)
+ - [Contributors](https://github.com/App2Sales/react-native-switch-selector/graphs/contributors)
+ 
+### Contribute
+Contributions are always welcome! Create a new Pull Request
