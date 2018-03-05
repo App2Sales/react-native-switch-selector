@@ -41,6 +41,12 @@ export default class SwitchSelector extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value !== this.props.value) {
+            this.toggleItem(nextProps.value);
+        }
+    }
+
     shouldSetResponder = (evt, gestureState) => {
         return evt.nativeEvent.touches.length === 1 &&
             !(Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5);
