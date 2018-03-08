@@ -3,17 +3,16 @@
 Switch Selector to React Native.
 
 [![npm version](https://badge.fury.io/js/react-native-switch-selector.svg)](https://badge.fury.io/js/react-native-switch-selector)
- <a href="https://www.npmjs.com/package/react-native-gifted-chat">
-  <img alt="npm dowloads" src="https://img.shields.io/npm/dm/react-native-switch-selector.svg"/></a>
+[![downloads](https://img.shields.io/npm/dm/react-native-switch-selector.svg)](https://www.npmjs.com/package/react-native-switch-selector)
 
-### SwitchSelector 
+### SwitchSelector
 
-![SwitchSelector](/assets/ex1.gif)
+![SwitchSelector](./assets/ex1.gif)
 
 
 ### SwitchSelector - Custom Example
 
-![SwitchSelector](/assets/ex2.gif)
+![SwitchSelector](./assets/ex2.gif)
 
 ### Installing
 
@@ -30,7 +29,7 @@ npm i react-native-switch-selector --save
 ### Usage
 
 ```js
-import SwitchSelector from 'react-native-switch-selector'
+import SwitchSelector from 'react-native-switch-selector';
 ```
 
 ```js
@@ -42,7 +41,7 @@ const options = [
 ```
 
 ```js
-<SwitchSelector options={options} initial={0} onPress={value => console.log("Call onPress with value: ", value)}/>
+<SwitchSelector options={options} initial={0} onPress={value => console.log(`Call onPress with value: ${value}`)} />
 ```
 
 ### Props
@@ -70,6 +69,6 @@ const options = [
  - Lucas Santana Carneiro - [jkdrangel](https://github.com/jkdrangel)
  - Cássio Silva de Sá Santos - [ssscassio](https://github.com/ssscassio)
  - [Contributors](https://github.com/App2Sales/react-native-switch-selector/graphs/contributors)
- 
+
 ### Contribute
 Contributions are always welcome! Create a new Pull Request
