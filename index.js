@@ -121,7 +121,7 @@ export default class SwitchSelector extends Component {
                     key={index}
                     style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
                     <TouchableOpacity style={styles.button} onPress={() => this.toggleItem(index)}>
-                        {element.customIcon}
+                        {typeof element.customIcon === 'function' ? element.customIcon(this.state.selected == index) : element.customIcon}
                         {element.imageIcon && <Image source={element.imageIcon} style={{ height: 30, width: 30, tintColor: this.state.selected == index ? selectedColor : textColor }} />}
                         <Text style={{
                             fontSize, textAlign: 'center', color: this.state.selected == index ? selectedColor : textColor, backgroundColor: 'transparent'
