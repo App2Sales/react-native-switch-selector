@@ -51,7 +51,7 @@ const options = [
 | options |  array |   null  |      true    |  Items array to render. Each item has a label and a value and optionals icons |
 | options[].label |  string |   null  |      true    |  Label from each item |
 | options[].value |  string |   null  |      true    |  Value from each item |
-| options[].customIcon |  Jsx element |   null  |      false    |  Optional custom icon from each item |
+| options[].customIcon |  Jsx element ou Function |   null  |      false    |  Optional custom icon from each item |
 | options[].imageIcon |  string |   null  |      false    |  Source from a image icon form each item. Has the same color then label in render |
 | options[].activeColor |  string |   null  |      false    |  Color from each item when is selected |
 | initial |    number   |   0    |       true       | Item selected in initial render |
@@ -63,6 +63,7 @@ const options = [
 | backgroundColor | string |    '#ffffff'    |        false      | Color bg of the component |
 | borderColor | string |    '#c9c9c9'    |        false      | Border Color of the component |
 | hasPadding | bool |    false    |        false      | Indicate if item has padding |
+| animationDuration | number | 250 | false | Duration of the animation |
 
 ### Authors
 
