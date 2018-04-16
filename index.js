@@ -84,7 +84,7 @@ export default class SwitchSelector extends Component {
             this.animatedValue,
             {
                 toValue: value,
-                duration: 250,
+                duration: this.props.animationDuration,
                 easing: Easing.cubic,
                 useNativeDriver: true,
             }
@@ -188,5 +188,6 @@ SwitchSelector.defaultProps = {
     backgroundColor: '#FFFFFF',
     borderColor: '#C9C9C9',
     hasPadding: false,
-    buttonColor: '#BCD635'
+    buttonColor: '#BCD635',
+    animationDuration: 250
 };
