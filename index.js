@@ -112,7 +112,8 @@ export default class SwitchSelector extends Component {
             fontSize,
             backgroundColor,
             borderColor,
-            hasPadding
+            hasPadding,
+            textStyle
         } = this.props;
 
         const options = this.props.options.map((element, index) =>
@@ -123,9 +124,9 @@ export default class SwitchSelector extends Component {
                     <TouchableOpacity style={styles.button} onPress={() => this.toggleItem(index)}>
                         {typeof element.customIcon === 'function' ? element.customIcon(this.state.selected == index) : element.customIcon}
                         {element.imageIcon && <Image source={element.imageIcon} style={{ height: 30, width: 30, tintColor: this.state.selected == index ? selectedColor : textColor }} />}
-                        <Text style={{
+                        <Text style={[{
                             fontSize, textAlign: 'center', color: this.state.selected == index ? selectedColor : textColor, backgroundColor: 'transparent'
-                        }}>{element.label}
+                        }, textStyle]}>{element.label}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -189,5 +190,6 @@ SwitchSelector.defaultProps = {
     borderColor: '#C9C9C9',
     hasPadding: false,
     buttonColor: '#BCD635',
-    animationDuration: 250
+    animationDuration: 250,
+    textStyle: {}
 };
