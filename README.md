@@ -64,6 +64,10 @@ const options = [
 | borderColor | string |    '#c9c9c9'    |        false      | Border Color of the component |
 | hasPadding | bool |    false    |        false      | Indicate if item has padding |
 | animationDuration | number | 250 | false | Duration of the animation |
+| valuePadding | number | 1 | false | Size of padding |
+| height | number | 40 | false | Height of component |
+| bold | bool | false | false | Indicate if text has fontWeight bold |
+| returnObject | bool | false | false | Indicate if onPress function return an option instead of option.value |
 
 ### Authors
 
