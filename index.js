@@ -160,7 +160,7 @@ export default class SwitchSelector extends Component {
           <Text
             style={{
               fontSize,
-              fontWeight: bold ? 'bold' : '',
+              fontWeight: bold ? 'bold' : 'normal',
               textAlign: 'center',
               color: this.state.selected == index ? selectedColor : textColor,
               backgroundColor: 'transparent'
