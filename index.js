@@ -198,7 +198,7 @@ export default class SwitchSelector extends Component {
                 <Animated.View
                   style={[
                     {
-                      height: hasPadding ? height - 6 : height,
+                      height: hasPadding ? height - 4 : height,
                       backgroundColor: this.getBgColor(),
                       width: this.state.sliderWidth /
                         this.props.options.length -
