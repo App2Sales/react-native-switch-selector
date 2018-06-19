@@ -31,7 +31,7 @@ const styles = {
 };
 
 export default class SwitchSelector extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       selected: this.props.initial ? this.props.initial : 0
@@ -39,13 +39,13 @@ export default class SwitchSelector extends Component {
     this.animatedValue = new Animated.Value(
       this.props.initial
         ? I18nManager.isRTL
-            ? -(this.props.initial / this.props.options.length)
-            : this.props.initial / this.props.options.length
+          ? -(this.props.initial / this.props.options.length)
+          : this.props.initial / this.props.options.length
         : 0
     );
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this.shouldSetResponder,
       onMoveShouldSetPanResponder: this.shouldSetResponder,
@@ -54,7 +54,7 @@ export default class SwitchSelector extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.value !== this.props.value) {
       this.toggleItem(nextProps.value);
     }
@@ -79,7 +79,7 @@ export default class SwitchSelector extends Component {
     }
   };
 
-  _getSwipeDirection(gestureState) {
+  _getSwipeDirection (gestureState) {
     const { dx, dy, vx } = gestureState;
     // 0.1 velocity
     if (Math.abs(vx) > 0.1 && Math.abs(dy) < 80) {
@@ -88,7 +88,7 @@ export default class SwitchSelector extends Component {
     return null;
   }
 
-  getBgColor() {
+  getBgColor () {
     const { selected } = this.state;
     const { options, buttonColor } = this.props;
     return options[selected].activeColor || buttonColor;
@@ -123,8 +123,12 @@ export default class SwitchSelector extends Component {
     this.setState({ selected: index });
   };
 
-  render() {
+  render () {
     const {
+      style,
+      textStyle,
+      selectedTextStyle,
+      imageStyle,
       textColor,
       selectedColor,
       fontSize,
@@ -149,22 +153,28 @@ export default class SwitchSelector extends Component {
           {element.imageIcon &&
             <Image
               source={element.imageIcon}
-              style={{
-                height: 30,
-                width: 30,
-                tintColor: this.state.selected == index
-                  ? selectedColor
-                  : textColor
-              }}
+              style={[
+                {
+                  height: 30,
+                  width: 30,
+                  tintColor: this.state.selected == index
+                    ? selectedColor
+                    : textColor
+                },
+                imageStyle
+              ]}
             />}
           <Text
-            style={{
-              fontSize,
-              fontWeight: bold ? 'bold' : 'normal',
-              textAlign: 'center',
-              color: this.state.selected == index ? selectedColor : textColor,
-              backgroundColor: 'transparent'
-            }}>
+            style={[
+              {
+                fontSize,
+                fontWeight: bold ? 'bold' : 'normal',
+                textAlign: 'center',
+                color: this.state.selected == index ? selectedColor : textColor,
+                backgroundColor: 'transparent'
+              },
+              this.state.selected == index ? selectedTextStyle : textStyle
+            ]}>
             {element.label}
           </Text>
         </TouchableOpacity>
@@ -172,7 +182,7 @@ export default class SwitchSelector extends Component {
     ));
 
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View style={[{ flexDirection: 'row' }, style]}>
         <View {...this._panResponder.panHandlers} style={{ flex: 1 }}>
           <View
             style={{
@@ -210,7 +220,7 @@ export default class SwitchSelector extends Component {
                             outputRange: [
                               hasPadding ? valuePadding : 0,
                               this.state.sliderWidth -
-                                (hasPadding ? valuePadding : 0)
+                              (hasPadding ? valuePadding : 0)
                             ],
                           }),
                         },
@@ -230,6 +240,10 @@ export default class SwitchSelector extends Component {
 }
 
 SwitchSelector.defaultProps = {
+  style: {},
+  textStyle: {},
+  selectedTextStyle: {},
+  imageStyle: {},
   textColor: '#000000',
   selectedColor: '#FFFFFF',
   fontSize: 14,
