@@ -67,6 +67,10 @@ const options = [
 | valuePadding | number | 1 | false | Size of padding |
 | height | number | 40 | false | Height of component |
 | bold | bool | false | false | Indicate if text has fontWeight bold |
+| textStyle | object | {} | false | Text style |
+| selectedTextStyle | object | {} | false | Selected text style |
+| imageStyle | object | {} | false | Image style |
+| style | object | {} | false | Container style |
 | returnObject | bool | false | false | Indicate if onPress function return an option instead of option.value |
 
 ### Authors
