@@ -204,7 +204,7 @@ export default class SwitchSelector extends Component {
                 borderRadius: 60,
                 borderWidth: hasPadding ? 1 : 0
               }}>
-              {this.state.sliderWidth &&
+              {!!this.state.sliderWidth &&
                 <Animated.View
                   style={[
                     {
