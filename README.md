@@ -79,6 +79,7 @@ const options = [
 | textColor | string |    '#000'    |        false      | Color text of the not selecteds items |
 | backgroundColor | string |    '#ffffff'    |        false      | Color bg of the component |
 | borderColor | string |    '#c9c9c9'    |        false      | Border Color of the component |
+| borderRadius | number |    50    |        false      | Border Radius of the component |
 | hasPadding | bool |    false    |        false      | Indicate if item has padding |
 | animationDuration | number | 250 | false | Duration of the animation |
 | valuePadding | number | 1 | false | Size of padding |

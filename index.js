@@ -24,7 +24,6 @@ const styles = {
     alignItems: 'center'
   },
   animated: {
-    borderRadius: 50,
     borderWidth: 0,
     position: 'absolute'
   }
@@ -134,6 +133,7 @@ export default class SwitchSelector extends Component {
       fontSize,
       backgroundColor,
       borderColor,
+      borderRadius,
       hasPadding,
       valuePadding,
       height,
@@ -186,7 +186,7 @@ export default class SwitchSelector extends Component {
         <View {...this._panResponder.panHandlers} style={{ flex: 1 }}>
           <View
             style={{
-              borderRadius: 50,
+              borderRadius: borderRadius,
               backgroundColor: backgroundColor,
               height
             }}
@@ -201,7 +201,7 @@ export default class SwitchSelector extends Component {
                 flex: 1,
                 flexDirection: 'row',
                 borderColor: borderColor || '#c9c9c9',
-                borderRadius: 60,
+                borderRadius: borderRadius,
                 borderWidth: hasPadding ? 1 : 0
               }}>
               {!!this.state.sliderWidth &&
@@ -225,6 +225,7 @@ export default class SwitchSelector extends Component {
                           }),
                         },
                       ],
+                      borderRadius: borderRadius,
                       marginTop: hasPadding ? valuePadding : 0
                     },
                     styles.animated
@@ -249,6 +250,7 @@ SwitchSelector.defaultProps = {
   fontSize: 14,
   backgroundColor: '#FFFFFF',
   borderColor: '#C9C9C9',
+  borderRadius: 50,
   hasPadding: false,
   valuePadding: 1,
   height: 40,
