@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-  View,
-  Text,
   Animated,
-  TouchableOpacity,
   Easing,
-  Image,
   I18nManager,
-  PanResponder
-} from 'react-native';
+  Image,
+  PanResponder,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 
 const styles = {
   button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   containerButton: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   animated: {
     borderWidth: 0,
-    position: 'absolute'
+    position: "absolute"
   }
 };
 
 export default class SwitchSelector extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       selected: this.props.initial ? this.props.initial : 0
@@ -44,7 +44,7 @@ export default class SwitchSelector extends Component {
     );
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this.shouldSetResponder,
       onMoveShouldSetPanResponder: this.shouldSetResponder,
@@ -53,7 +53,7 @@ export default class SwitchSelector extends Component {
     });
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.toggleItem(nextProps.value);
     }
@@ -67,27 +67,28 @@ export default class SwitchSelector extends Component {
   };
 
   responderEnd = (evt, gestureState) => {
+    if (this.props.disabled) return;
     const swipeDirection = this._getSwipeDirection(gestureState);
     if (
-      swipeDirection === 'RIGHT' &&
+      swipeDirection === "RIGHT" &&
       this.state.selected < this.props.options.length - 1
     ) {
       this.toggleItem(this.state.selected + 1);
-    } else if (swipeDirection === 'LEFT' && this.state.selected > 0) {
+    } else if (swipeDirection === "LEFT" && this.state.selected > 0) {
       this.toggleItem(this.state.selected - 1);
     }
   };
 
-  _getSwipeDirection (gestureState) {
+  _getSwipeDirection(gestureState) {
     const { dx, dy, vx } = gestureState;
     // 0.1 velocity
     if (Math.abs(vx) > 0.1 && Math.abs(dy) < 80) {
-      return dx > 0 ? 'RIGHT' : 'LEFT';
+      return dx > 0 ? "RIGHT" : "LEFT";
     }
     return null;
   }
 
-  getBgColor () {
+  getBgColor() {
     const { selected } = this.state;
     const { options, buttonColor } = this.props;
     return options[selected].activeColor || buttonColor;
@@ -99,7 +100,7 @@ export default class SwitchSelector extends Component {
       toValue: value,
       duration: this.props.animationDuration,
       easing: Easing.cubic,
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start();
   };
 
@@ -107,9 +108,7 @@ export default class SwitchSelector extends Component {
     const { options, returnObject, onPress } = this.props;
     if (options.length <= 1) return;
     this.animate(
-      I18nManager.isRTL
-        ? -(index / options.length)
-        : index / options.length,
+      I18nManager.isRTL ? -(index / options.length) : index / options.length,
       I18nManager.isRTL
         ? -(this.state.selected / options.length)
         : this.state.selected / options.length
@@ -117,12 +116,12 @@ export default class SwitchSelector extends Component {
     if (onPress) {
       onPress(returnObject ? options[index] : options[index].value);
     } else {
-      console.log('Call onPress with value: ', options[index].value);
+      console.log("Call onPress with value: ", options[index].value);
     }
     this.setState({ selected: index });
   };
 
-  render () {
+  render() {
     const {
       style,
       textStyle,
@@ -137,44 +136,49 @@ export default class SwitchSelector extends Component {
       hasPadding,
       valuePadding,
       height,
-      bold
+      bold,
+      disabled
     } = this.props;
 
     const options = this.props.options.map((element, index) => (
       <View
         key={index}
-        style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+        style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
+      >
         <TouchableOpacity
+          disabled={disabled}
           style={styles.button}
-          onPress={() => this.toggleItem(index)}>
-          {typeof element.customIcon === 'function'
+          onPress={() => this.toggleItem(index)}
+        >
+          {typeof element.customIcon === "function"
             ? element.customIcon(this.state.selected == index)
             : element.customIcon}
-          {element.imageIcon &&
+          {element.imageIcon && (
             <Image
               source={element.imageIcon}
               style={[
                 {
                   height: 30,
                   width: 30,
-                  tintColor: this.state.selected == index
-                    ? selectedColor
-                    : textColor
+                  tintColor:
+                    this.state.selected == index ? selectedColor : textColor
                 },
                 imageStyle
               ]}
-            />}
+            />
+          )}
           <Text
             style={[
               {
                 fontSize,
-                fontWeight: bold ? 'bold' : 'normal',
-                textAlign: 'center',
+                fontWeight: bold ? "bold" : "normal",
+                textAlign: "center",
                 color: this.state.selected == index ? selectedColor : textColor,
-                backgroundColor: 'transparent'
+                backgroundColor: "transparent"
               },
               this.state.selected == index ? selectedTextStyle : textStyle
-            ]}>
+            ]}
+          >
             {element.label}
           </Text>
         </TouchableOpacity>
@@ -182,7 +186,7 @@ export default class SwitchSelector extends Component {
     ));
 
     return (
-      <View style={[{ flexDirection: 'row' }, style]}>
+      <View style={[{ flexDirection: "row" }, style]}>
         <View {...this._panResponder.panHandlers} style={{ flex: 1 }}>
           <View
             style={{
@@ -193,25 +197,27 @@ export default class SwitchSelector extends Component {
             onLayout={event => {
               const { width } = event.nativeEvent.layout;
               this.setState({
-                sliderWidth: width - (hasPadding ? valuePadding : 0),
+                sliderWidth: width - (hasPadding ? valuePadding : 0)
               });
-            }}>
+            }}
+          >
             <View
               style={{
                 flex: 1,
-                flexDirection: 'row',
-                borderColor: borderColor || '#c9c9c9',
+                flexDirection: "row",
+                borderColor: borderColor || "#c9c9c9",
                 borderRadius: borderRadius,
                 borderWidth: hasPadding ? 1 : 0
-              }}>
-              {!!this.state.sliderWidth &&
+              }}
+            >
+              {!!this.state.sliderWidth && (
                 <Animated.View
                   style={[
                     {
                       height: hasPadding ? height - 4 : height,
                       backgroundColor: this.getBgColor(),
-                      width: this.state.sliderWidth /
-                        this.props.options.length -
+                      width:
+                        this.state.sliderWidth / this.props.options.length -
                         (hasPadding ? valuePadding : 0),
                       transform: [
                         {
@@ -220,17 +226,18 @@ export default class SwitchSelector extends Component {
                             outputRange: [
                               hasPadding ? valuePadding : 0,
                               this.state.sliderWidth -
-                              (hasPadding ? valuePadding : 0)
-                            ],
-                          }),
-                        },
+                                (hasPadding ? valuePadding : 0)
+                            ]
+                          })
+                        }
                       ],
                       borderRadius: borderRadius,
                       marginTop: hasPadding ? valuePadding : 0
                     },
                     styles.animated
                   ]}
-                />}
+                />
+              )}
               {options}
             </View>
           </View>
@@ -245,17 +252,18 @@ SwitchSelector.defaultProps = {
   textStyle: {},
   selectedTextStyle: {},
   imageStyle: {},
-  textColor: '#000000',
-  selectedColor: '#FFFFFF',
+  textColor: "#000000",
+  selectedColor: "#FFFFFF",
   fontSize: 14,
-  backgroundColor: '#FFFFFF',
-  borderColor: '#C9C9C9',
+  backgroundColor: "#FFFFFF",
+  borderColor: "#C9C9C9",
   borderRadius: 50,
   hasPadding: false,
   valuePadding: 1,
   height: 40,
   bold: false,
-  buttonColor: '#BCD635',
+  buttonColor: "#BCD635",
   returnObject: false,
-  animationDuration: 100
+  animationDuration: 100,
+  disabled: false
 };

@@ -1,10 +1,10 @@
-declare module 'react-native-switch-selector' {
-  import { Component } from 'react';
-  import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+declare module "react-native-switch-selector" {
+  import { Component } from "react";
+  import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
   export interface ISwitchSelectorOption {
     label: string;
-    value: string;
+    value: string | number;
     customIcon?: JSX.Element;
     imageIcon?: string;
     activeColor?: string;
@@ -13,7 +13,7 @@ declare module 'react-native-switch-selector' {
   export interface ISwitchSelectorProps {
     options: ISwitchSelectorOption[];
     initial: number;
-    onPress(value: string | ISwitchSelectorOption): void;
+    onPress(value: string | number | ISwitchSelectorOption): void;
     fontSize?: number;
     selectedColor?: string;
     buttonColor?: string;
@@ -31,9 +31,10 @@ declare module 'react-native-switch-selector' {
     imageStyle?: ImageStyle;
     style?: ViewStyle;
     returnObject?: boolean;
+    disabled?: boolean;
   }
 
-  class SwitchSelector extends Component<ISwitchSelectorProps> { }
+  class SwitchSelector extends Component<ISwitchSelectorProps> {}
 
   export default SwitchSelector;
 }
