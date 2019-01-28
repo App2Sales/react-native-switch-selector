@@ -4,7 +4,7 @@ declare module "react-native-switch-selector" {
 
   export interface ISwitchSelectorOption {
     label: string;
-    value: string;
+    value: string | number;
     customIcon?: JSX.Element;
     imageIcon?: string;
     activeColor?: string;
