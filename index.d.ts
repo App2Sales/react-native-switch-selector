@@ -13,7 +13,7 @@ declare module "react-native-switch-selector" {
   export interface ISwitchSelectorProps {
     options: ISwitchSelectorOption[];
     initial: number;
-    onPress(value: string | ISwitchSelectorOption): void;
+    onPress(value: string | number | ISwitchSelectorOption): void;
     fontSize?: number;
     selectedColor?: string;
     buttonColor?: string;
