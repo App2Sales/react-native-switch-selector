@@ -67,6 +67,7 @@ export default class SwitchSelector extends Component {
   };
 
   responderEnd = (evt, gestureState) => {
+    if (this.props.disabled) return;
     const swipeDirection = this._getSwipeDirection(gestureState);
     if (
       swipeDirection === "RIGHT" &&
