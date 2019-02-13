@@ -104,7 +104,7 @@ export default class SwitchSelector extends Component {
     }).start();
   };
 
-  toggleItem = index => {
+  toggleItem = (index, callOnPress = true) => {
     const { options, returnObject, onPress } = this.props;
     if (options.length <= 1) return;
     this.animate(
@@ -113,7 +113,7 @@ export default class SwitchSelector extends Component {
         ? -(this.state.selected / options.length)
         : this.state.selected / options.length
     );
-    if (onPress) {
+    if (callOnPress && onPress) {
       onPress(returnObject ? options[index] : options[index].value);
     } else {
       console.log("Call onPress with value: ", options[index].value);
