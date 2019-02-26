@@ -197,7 +197,7 @@ export default class SwitchSelector extends Component {
             onLayout={event => {
               const { width } = event.nativeEvent.layout;
               this.setState({
-                sliderWidth: width - (hasPadding ? valuePadding : 0)
+                sliderWidth: width - (hasPadding ? 2 : 0)
               });
             }}
           >
