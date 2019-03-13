@@ -106,7 +106,7 @@ export default class SwitchSelector extends Component {
 
   toggleItem = index => {
     const { options, returnObject, onPress } = this.props;
-    if (options.length <= 1) return;
+    if (options.length <= 1 || index === null || isNaN(index)) return;
     this.animate(
       I18nManager.isRTL ? -(index / options.length) : index / options.length,
       I18nManager.isRTL
