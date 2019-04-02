@@ -76,6 +76,7 @@ const options = [
 | options[].imageIcon   | string                  | null        | false    | Source from a image icon form each item. Has the same color then label in render |
 | options[].activeColor | string                  | null        | false    | Color from each item when is selected                                            |
 | initial               | number                  | 0           | true     | Item selected in initial render                                                  |
+| value                 | number                  | undefined   | true     | The switch value (will call onPress)                                             |
 | onPress               | function                | console.log | true     | Callback function called after change value.                                     |
 | fontSize              | number                  | null        | false    | Font size from labels. If null default fontSize of the app is used.              |
 | selectedColor         | string                  | '#fff'      | false    | Color text of the item selected                                                  |
