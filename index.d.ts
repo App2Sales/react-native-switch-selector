@@ -32,9 +32,9 @@ declare module "react-native-switch-selector" {
     valuePadding?: number;
     height?: number;
     bold?: boolean;
-    textStyle?: TextStyle;
-    selectedTextStyle?: TextStyle;
-    imageStyle?: ImageStyle;
+    textStyle?: TextStyle | RegisteredStyle<TextStyle>;
+    selectedTextStyle?: TextStyle | RegisteredStyle<TextStyle>;
+    imageStyle?: ImageStyle | RegisteredStyle<ImageStyle>;
     style?: ViewStyle | RegisteredStyle<ViewStyle>;
     returnObject?: boolean;
     disabled?: boolean;
