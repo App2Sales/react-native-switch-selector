@@ -55,7 +55,7 @@ export default class SwitchSelector extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      this.toggleItem(nextProps.value);
+      this.toggleItem(nextProps.value, !this.props.disableValueChangeOnPress);
     }
   }
 
@@ -265,5 +265,6 @@ SwitchSelector.defaultProps = {
   buttonColor: "#BCD635",
   returnObject: false,
   animationDuration: 100,
-  disabled: false
+  disabled: false,
+  disableValueChangeOnPress: false
 };

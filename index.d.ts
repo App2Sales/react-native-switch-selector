@@ -38,6 +38,7 @@ declare module "react-native-switch-selector" {
     style?: ViewStyle | RegisteredStyle<ViewStyle>;
     returnObject?: boolean;
     disabled?: boolean;
+    disableValueChangeOnPress?: boolean;
   }
 
   class SwitchSelector extends Component<ISwitchSelectorProps> {}
