@@ -12,6 +12,7 @@ import {
 
 const styles = {
   button: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
@@ -141,48 +142,44 @@ export default class SwitchSelector extends Component {
     } = this.props;
 
     const options = this.props.options.map((element, index) => (
-      <View
+      <TouchableOpacity
         key={index}
-        style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
+        disabled={disabled}
+        style={styles.button}
+        onPress={() => this.toggleItem(index)}
       >
-        <TouchableOpacity
-          disabled={disabled}
-          style={styles.button}
-          onPress={() => this.toggleItem(index)}
-        >
-          {typeof element.customIcon === "function"
-            ? element.customIcon(this.state.selected == index)
-            : element.customIcon}
-          {element.imageIcon && (
-            <Image
-              source={element.imageIcon}
-              style={[
-                {
-                  height: 30,
-                  width: 30,
-                  tintColor:
-                    this.state.selected == index ? selectedColor : textColor
-                },
-                imageStyle
-              ]}
-            />
-          )}
-          <Text
+        {typeof element.customIcon === "function"
+          ? element.customIcon(this.state.selected == index)
+          : element.customIcon}
+        {element.imageIcon && (
+          <Image
+            source={element.imageIcon}
             style={[
               {
-                fontSize,
-                fontWeight: bold ? "bold" : "normal",
-                textAlign: "center",
-                color: this.state.selected == index ? selectedColor : textColor,
-                backgroundColor: "transparent"
+                height: 30,
+                width: 30,
+                tintColor:
+                  this.state.selected == index ? selectedColor : textColor
               },
-              this.state.selected == index ? selectedTextStyle : textStyle
+              imageStyle
             ]}
-          >
-            {element.label}
-          </Text>
-        </TouchableOpacity>
-      </View>
+          />
+        )}
+        <Text
+          style={[
+            {
+              fontSize,
+              fontWeight: bold ? "bold" : "normal",
+              textAlign: "center",
+              color: this.state.selected == index ? selectedColor : textColor,
+              backgroundColor: "transparent"
+            },
+            this.state.selected == index ? selectedTextStyle : textStyle
+          ]}
+        >
+          {element.label}
+        </Text>
+      </TouchableOpacity>
     ));
 
     return (
