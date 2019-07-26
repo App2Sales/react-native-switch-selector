@@ -92,8 +92,8 @@ const options = [
 | height                     | number                  | 40          | false    | Height of component                                                              |
 | bold                       | bool                    | false       | false    | Indicate if text has fontWeight bold                                             |
 | textStyle                  | object                  | {}          | false    | Text style                                                                       |
-| textContainerStyle         | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextStyle          | object                  | {}          | false    | Selected text style                                                              |
+| textContainerStyle         | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
 | imageStyle                 | object                  | {}          | false    | Image style                                                                      |
 | style                      | object                  | {}          | false    | Container style                                                                  |
