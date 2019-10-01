@@ -36,6 +36,14 @@ export default class SwitchSelector extends Component {
     this.state = {
       selected: this.props.initial ? this.props.initial : 0
     };
+
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: this.shouldSetResponder,
+      onMoveShouldSetPanResponder: this.shouldSetResponder,
+      onPanResponderRelease: this.responderEnd,
+      onPanResponderTerminate: this.responderEnd
+    });
+
     this.animatedValue = new Animated.Value(
       this.props.initial
         ? I18nManager.isRTL
@@ -45,18 +53,9 @@ export default class SwitchSelector extends Component {
     );
   }
 
-  componentWillMount() {
-    this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: this.shouldSetResponder,
-      onMoveShouldSetPanResponder: this.shouldSetResponder,
-      onPanResponderRelease: this.responderEnd,
-      onPanResponderTerminate: this.responderEnd
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.toggleItem(nextProps.value, !this.props.disableValueChangeOnPress);
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.toggleItem(prevProps.value, !this.props.disableValueChangeOnPress);
     }
   }
 
