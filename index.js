@@ -127,6 +127,8 @@ export default class SwitchSelector extends Component {
       style,
       textStyle,
       selectedTextStyle,
+      textContainerStyle,
+      selectedTextContainerStyle,
       imageStyle,
       textColor,
       selectedColor,
@@ -141,46 +143,50 @@ export default class SwitchSelector extends Component {
       disabled
     } = this.props;
 
-    const options = this.props.options.map((element, index) => (
-      <TouchableOpacity
-        key={index}
-        disabled={disabled}
-        style={styles.button}
-        onPress={() => this.toggleItem(index)}
-      >
-        {typeof element.customIcon === "function"
-          ? element.customIcon(this.state.selected == index)
-          : element.customIcon}
-        {element.imageIcon && (
-          <Image
-            source={element.imageIcon}
+    const options = this.props.options.map((element, index) => {
+      const is_selected = this.state.selected == index;
+
+      return (
+        <TouchableOpacity
+          key={index}
+          disabled={disabled}
+          style={[styles.button, is_selected ? selectedTextContainerStyle : textContainerStyle]}
+          onPress={() => this.toggleItem(index)}
+        >
+          {typeof element.customIcon === "function"
+            ? element.customIcon(is_selected)
+            : element.customIcon}
+          {element.imageIcon && (
+            <Image
+              source={element.imageIcon}
+              style={[
+                {
+                  height: 30,
+                  width: 30,
+                  tintColor:
+                    is_selected ? selectedColor : textColor
+                },
+                imageStyle
+              ]}
+            />
+          )}
+          <Text
             style={[
               {
-                height: 30,
-                width: 30,
-                tintColor:
-                  this.state.selected == index ? selectedColor : textColor
+                fontSize,
+                fontWeight: bold ? "bold" : "normal",
+                textAlign: "center",
+                color: is_selected ? selectedColor : textColor,
+                backgroundColor: "transparent"
               },
-              imageStyle
+              is_selected ? selectedTextStyle : textStyle
             ]}
-          />
-        )}
-        <Text
-          style={[
-            {
-              fontSize,
-              fontWeight: bold ? "bold" : "normal",
-              textAlign: "center",
-              color: this.state.selected == index ? selectedColor : textColor,
-              backgroundColor: "transparent"
-            },
-            this.state.selected == index ? selectedTextStyle : textStyle
-          ]}
-        >
-          {element.label}
-        </Text>
-      </TouchableOpacity>
-    ));
+          >
+            {element.label}
+          </Text>
+        </TouchableOpacity>
+      )
+    });
 
     return (
       <View style={[{ flexDirection: "row" }, style]}>
@@ -248,6 +254,8 @@ SwitchSelector.defaultProps = {
   style: {},
   textStyle: {},
   selectedTextStyle: {},
+  textContainerStyle: {},
+  selectedTextContainerStyle: {},
   imageStyle: {},
   textColor: "#000000",
   selectedColor: "#FFFFFF",
