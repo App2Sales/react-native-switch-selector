@@ -81,6 +81,7 @@ const options = [
 | disableValueChangeOnPress  | bool                    | false       | false    | Disables the onPress call when the value is manually changed                     |
 | fontSize                   | number                  | null        | false    | Font size from labels. If null default fontSize of the app is used.              |
 | selectedColor              | string                  | '#fff'      | false    | Color text of the item selected                                                  |
+| buttonMargin               | string                  | null        | false    | Margin of the item selected to the component                                     |
 | buttonColor                | string                  | '#BCD635'   | false    | Color bg of the item selected                                                    |
 | textColor                  | string                  | '#000'      | false    | Color text of the not selecteds items                                            |
 | backgroundColor            | string                  | '#ffffff'   | false    | Color bg of the component                                                        |
