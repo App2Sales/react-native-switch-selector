@@ -17,13 +17,6 @@ const styles = {
     justifyContent: "center",
     alignItems: "center"
   },
-  containerButton: {
-    flexDirection: "row",
-    flex: 1,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center"
-  },
   animated: {
     borderWidth: 0,
     position: "absolute"
@@ -208,7 +201,7 @@ export default class SwitchSelector extends Component {
               style={{
                 flex: 1,
                 flexDirection: "row",
-                borderColor: borderColor || "#c9c9c9",
+                borderColor: borderColor,
                 borderRadius: borderRadius,
                 borderWidth: hasPadding ? 1 : 0
               }}
@@ -229,7 +222,7 @@ export default class SwitchSelector extends Component {
                             outputRange: [
                               hasPadding ? valuePadding : 0,
                               this.state.sliderWidth -
-                                (hasPadding ? valuePadding : 0)
+                              (hasPadding ? valuePadding : 0)
                             ]
                           })
                         }
