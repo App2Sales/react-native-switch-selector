@@ -22,6 +22,7 @@ declare module "react-native-switch-selector" {
     onPress(value: string | number | ISwitchSelectorOption): void;
     fontSize?: number;
     selectedColor?: string;
+    buttonMargin?: number;
     buttonColor?: string;
     textColor?: string;
     backgroundColor?: string;
