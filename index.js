@@ -139,7 +139,8 @@ export default class SwitchSelector extends Component {
       valuePadding,
       height,
       bold,
-      disabled
+      disabled,
+      buttonMargin
     } = this.props;
 
     const options = this.props.options.map((element, index) => {
@@ -194,7 +195,7 @@ export default class SwitchSelector extends Component {
             style={{
               borderRadius: borderRadius,
               backgroundColor: backgroundColor,
-              height
+              height: height + (buttonMargin * 2)
             }}
             onLayout={event => {
               const { width } = event.nativeEvent.layout;
@@ -220,7 +221,7 @@ export default class SwitchSelector extends Component {
                       backgroundColor: this.getBgColor(),
                       width:
                         this.state.sliderWidth / this.props.options.length -
-                        (hasPadding ? valuePadding : 0),
+                        ((hasPadding ? valuePadding : 0) + (buttonMargin * 2)),
                       transform: [
                         {
                           translateX: this.animatedValue.interpolate({
@@ -234,7 +235,7 @@ export default class SwitchSelector extends Component {
                         }
                       ],
                       borderRadius: borderRadius,
-                      marginTop: hasPadding ? valuePadding : 0
+                      margin: buttonMargin
                     },
                     styles.animated
                   ]}
@@ -266,6 +267,7 @@ SwitchSelector.defaultProps = {
   valuePadding: 1,
   height: 40,
   bold: false,
+  buttonMargin: 0,
   buttonColor: "#BCD635",
   returnObject: false,
   animationDuration: 100,
