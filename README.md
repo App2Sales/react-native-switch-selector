@@ -75,7 +75,7 @@ const options = [
 | options[].customIcon       | Jsx element ou Function | null        | false    | Optional custom icon from each item                                              |
 | options[].imageIcon        | string                  | null        | false    | Source from a image icon form each item. Has the same color then label in render |
 | options[].activeColor      | string                  | null        | false    | Color from each item when is selected                                            |
-| initial                    | number                  | 0           | false    | Item selected in initial render                                                  |
+| initial                    | number                  | -1          | false    | Item selected in initial render                                                  |
 | value                      | number                  | undefined   | false    | The switch value (will call onPress)                                             |
 | onPress                    | function                | console.log | true     | Callback function called after change value.                                     |
 | disableValueChangeOnPress  | bool                    | false       | false    | Disables the onPress call when the value is manually changed                     |
