@@ -270,5 +270,6 @@ SwitchSelector.defaultProps = {
   returnObject: false,
   animationDuration: 100,
   disabled: false,
-  disableValueChangeOnPress: false
+  disableValueChangeOnPress: false,
+  initial: 0
 };
