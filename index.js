@@ -34,7 +34,7 @@ export default class SwitchSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: this.props.initial ? this.props.initial : 0
+      selected: this.props.initial
     };
 
     this._panResponder = PanResponder.create({
@@ -91,6 +91,9 @@ export default class SwitchSelector extends Component {
   getBgColor() {
     const { selected } = this.state;
     const { options, buttonColor } = this.props;
+    if (selected === -1) {
+      return "transparent";
+    }
     return options[selected].activeColor || buttonColor;
   }
 
@@ -273,5 +276,5 @@ SwitchSelector.defaultProps = {
   animationDuration: 100,
   disabled: false,
   disableValueChangeOnPress: false,
-  initial: 0
+  initial: -1
 };
