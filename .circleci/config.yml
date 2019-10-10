@@ -4,8 +4,7 @@ jobs:
     docker:
       - image: node
     steps:
-        - lint:
-            command: |
+    - run:
+        command: |-
               npm install
               ./node_modules/.bin/eslint index.js index.d.ts
-            when: always
