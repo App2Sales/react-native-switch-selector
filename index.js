@@ -48,7 +48,7 @@ export default class SwitchSelector extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.value !== this.props.value) {
-      this.toggleItem(prevProps.value, !this.props.disableValueChangeOnPress);
+      this.toggleItem(this.props.value, !this.props.disableValueChangeOnPress);
     }
   }
 
