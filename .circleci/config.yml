@@ -4,8 +4,6 @@ jobs:
     docker:
       - image: node
     steps:
-    - run:
-        command: |-
-              cd ..
-              npm install
-              ./node_modules/.bin/eslint index.js index.d.ts
+      - checkout
+      - run: npm install
+      - run: ./node_modules/.bin/eslint index.js index.d.ts
