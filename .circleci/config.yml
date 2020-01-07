@@ -6,5 +6,6 @@ jobs:
     steps:
     - run:
         command: |-
+              cd ..
               npm install
               ./node_modules/.bin/eslint index.js index.d.ts
