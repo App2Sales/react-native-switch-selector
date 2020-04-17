@@ -100,6 +100,7 @@ const options = [
 | style                      | object                  | {}          | false    | Container style                                                                  |
 | returnObject               | bool                    | false       | false    | Indicate if onPress function return an option instead of option.value            |
 | disabled                   | bool                    | false       | false    | Disables the switch                                                              |
+| borderWidth                | number                  | 1           | false    | Define border width
 
 ### Authors
 
