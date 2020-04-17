@@ -131,6 +131,7 @@ export default class SwitchSelector extends Component {
       backgroundColor,
       borderColor,
       borderRadius,
+      borderWidth,
       hasPadding,
       valuePadding,
       height,
@@ -206,14 +207,15 @@ export default class SwitchSelector extends Component {
                 flexDirection: "row",
                 borderColor: borderColor,
                 borderRadius: borderRadius,
-                borderWidth: hasPadding ? 1 : 0
+                borderWidth: hasPadding ? borderWidth : 0,
+                alignItems: "center"
               }}
             >
               {!!this.state.sliderWidth && (
                 <Animated.View
                   style={[
                     {
-                      height: hasPadding ? height - (valuePadding * 2) : height,
+                      height: hasPadding ? height - (valuePadding * 2) - borderWidth * 2 : height,
                       backgroundColor: this.getBgColor(),
                       width:
                         this.state.sliderWidth / this.props.options.length -
@@ -259,6 +261,7 @@ SwitchSelector.defaultProps = {
   backgroundColor: "#FFFFFF",
   borderColor: "#C9C9C9",
   borderRadius: 50,
+  borderWidth: 1,
   hasPadding: false,
   valuePadding: 1,
   height: 40,
