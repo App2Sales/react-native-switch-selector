@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: ./node_modules/.bin/eslint index.js index.d.ts
+      - run: ./node_modules/.bin/eslint index.js
