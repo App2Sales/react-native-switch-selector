@@ -44,7 +44,9 @@ declare module "react-native-switch-selector" {
     disableValueChangeOnPress?: boolean;
   }
 
-  class SwitchSelector extends Component<ISwitchSelectorProps> {}
+  class SwitchSelector extends Component<ISwitchSelectorProps> {
+    toggleItem(index: number, callOnPress?: boolean): void;
+  }
 
   export default SwitchSelector;
 }
