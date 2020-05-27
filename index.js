@@ -266,7 +266,7 @@ SwitchSelector.defaultProps = {
   textContainerStyle: {},
   selectedTextContainerStyle: {},
   imageStyle: {},
-  options: {},
+  options: [],
   textColor: '#000000',
   selectedColor: '#FFFFFF',
   fontSize: 14,
@@ -290,13 +290,13 @@ SwitchSelector.defaultProps = {
 };
 
 SwitchSelector.propTypes = {
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   textStyle: PropTypes.object,
   selectedTextStyle: PropTypes.object,
   textContainerStyle: PropTypes.object,
   selectedTextContainerStyle: PropTypes.object,
   imageStyle: PropTypes.object,
-  options: PropTypes.object,
+  options: PropTypes.array,
   textColor: PropTypes.string,
   selectedColor: PropTypes.string,
   fontSize: PropTypes.number,
