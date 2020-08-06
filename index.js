@@ -142,6 +142,7 @@ export default class SwitchSelector extends Component {
       bold,
       disabled,
       buttonMargin,
+      buttonStyle,
       options,
     } = this.props;
 
@@ -246,6 +247,7 @@ export default class SwitchSelector extends Component {
                       borderRadius,
                       margin: buttonMargin,
                     },
+                    buttonStyle,
                     styles.animated,
                   ]}
                 />
@@ -280,6 +282,7 @@ SwitchSelector.defaultProps = {
   bold: false,
   buttonMargin: 0,
   buttonColor: '#BCD635',
+  buttonStyle: {},
   returnObject: false,
   animationDuration: 100,
   disabled: false,
@@ -310,6 +313,7 @@ SwitchSelector.propTypes = {
   bold: PropTypes.bool,
   buttonMargin: PropTypes.number,
   buttonColor: PropTypes.string,
+  buttonStyle: PropTypes.object,
   returnObject: PropTypes.bool,
   animationDuration: PropTypes.number,
   disabled: PropTypes.bool,

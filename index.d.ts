@@ -24,6 +24,7 @@ declare module "react-native-switch-selector" {
     selectedColor?: string;
     buttonMargin?: number;
     buttonColor?: string;
+    buttonStyle?: object;
     textColor?: string;
     backgroundColor?: string;
     borderColor?: string;
