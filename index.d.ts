@@ -28,6 +28,7 @@ declare module "react-native-switch-selector" {
     backgroundColor?: string;
     borderColor?: string;
     borderRadius?: number;
+    borderWidth?: number;
     hasPadding?: boolean;
     animationDuration?: number;
     valuePadding?: number;
