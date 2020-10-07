@@ -141,6 +141,7 @@ export default class SwitchSelector extends Component {
       height,
       bold,
       disabled,
+      activeOpacity,
       buttonMargin,
       options,
     } = this.props;
@@ -152,6 +153,7 @@ export default class SwitchSelector extends Component {
 
       return (
         <TouchableOpacity
+          activeOpacity={activeOpacity}
           key={index}
           disabled={disabled}
           style={[
@@ -282,6 +284,7 @@ SwitchSelector.defaultProps = {
   buttonColor: '#BCD635',
   returnObject: false,
   animationDuration: 100,
+  activeOpacity: 0.2,
   disabled: false,
   disableValueChangeOnPress: false,
   initial: -1,
@@ -312,6 +315,7 @@ SwitchSelector.propTypes = {
   buttonColor: PropTypes.string,
   returnObject: PropTypes.bool,
   animationDuration: PropTypes.number,
+  activeOpacity: PropTypes.number,
   disabled: PropTypes.bool,
   disableValueChangeOnPress: PropTypes.bool,
   initial: PropTypes.number,
