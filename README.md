@@ -83,7 +83,7 @@ const options = [
 | selectedColor              | string                  | '#fff'      | false    | Color text of the item selected                                                  |
 | buttonMargin               | number                  | 0           | false    | Margin of the item selected to component                                         |
 | buttonColor                | string                  | '#BCD635'   | false    | Color bg of the item selected                                                    |
-| textColor                  | string                  | '#000'      | false    | Color text of the not selecteds items                                            |
+| textColor                  | string                  | '#000'      | false    | Color text of the not selected items                                            |
 | backgroundColor            | string                  | '#ffffff'   | false    | Color bg of the component                                                        |
 | borderColor                | string                  | '#c9c9c9'   | false    | Border Color of the component                                                    |
 | borderRadius               | number                  | 50          | false    | Border Radius of the component                                                   |
@@ -96,6 +96,7 @@ const options = [
 | selectedTextStyle          | object                  | {}          | false    | Selected text style                                                              |
 | textContainerStyle         | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
+| activeOpacity              | number                  | 0.2         | false    | Target opacity of selected component (TouchableOpacity)                  |
 | imageStyle                 | object                  | {}          | false    | Image style                                                                      |
 | style                      | object                  | {}          | false    | Container style                                                                  |
 | returnObject               | bool                    | false       | false    | Indicate if onPress function return an option instead of option.value            |

@@ -40,6 +40,7 @@ declare module "react-native-switch-selector" {
     imageStyle?: ImageStyle | RegisteredStyle<ImageStyle>;
     style?: ViewStyle | RegisteredStyle<ViewStyle>;
     returnObject?: boolean;
+    activeOpacity?: number;
     disabled?: boolean;
     disableValueChangeOnPress?: boolean;
   }
