@@ -4,7 +4,7 @@ declare module "react-native-switch-selector" {
     ImageStyle,
     RegisteredStyle,
     TextStyle,
-    ViewStyle
+    ViewStyle,
   } from "react-native";
 
   export interface ISwitchSelectorOption {
@@ -36,6 +36,7 @@ declare module "react-native-switch-selector" {
     textStyle?: TextStyle | RegisteredStyle<TextStyle>;
     selectedTextStyle?: TextStyle | RegisteredStyle<TextStyle>;
     textCStyle?: TextStyle | RegisteredStyle<TextStyle>;
+    textContainerStyle?: TextStyle | RegisteredStyle<TextStyle>;
     selectedTextContainerStyle?: TextStyle | RegisteredStyle<TextStyle>;
     imageStyle?: ImageStyle | RegisteredStyle<ImageStyle>;
     style?: ViewStyle | RegisteredStyle<ViewStyle>;
