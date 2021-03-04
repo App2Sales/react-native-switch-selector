@@ -13,8 +13,6 @@ declare module "react-native-switch-selector" {
     customIcon?: JSX.Element;
     imageIcon?: string;
     activeColor?: string;
-    accessibilityLabel?: string;
-    testID?: string;
   }
 
   export interface ISwitchSelectorProps {
@@ -44,8 +42,6 @@ declare module "react-native-switch-selector" {
     returnObject?: boolean;
     disabled?: boolean;
     disableValueChangeOnPress?: boolean;
-    accessibilityLabel?: string;
-    testID?: string;
   }
 
   class SwitchSelector extends Component<ISwitchSelectorProps> {}
