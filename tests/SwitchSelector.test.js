@@ -171,6 +171,36 @@ describe('SwitchSelector', () => {
     expect(indicator).toBeTruthy();
   });
 
+  it('applies buttonStyle arrays to the animated indicator without affecting selection', () => {
+    const onPress = jest.fn();
+    const customStyles = StyleSheet.create({ shadow: { shadowOpacity: 0.5 } });
+    render(
+      <SwitchSelector
+        options={options}
+        initial={0}
+        onPress={onPress}
+        buttonStyle={[customStyles.shadow, { elevation: 4 }]}
+      />,
+    );
+    const layoutView = screen.UNSAFE_getAllByType(View).find((view) => view.props.onLayout);
+    fireEvent(layoutView, 'layout', { nativeEvent: { layout: { width: 300 } } });
+
+    const indicator = screen.UNSAFE_getAllByType(Animated.View)
+      .find((view) => StyleSheet.flatten(view.props.style).width === 100);
+    expect(StyleSheet.flatten(indicator.props.style)).toEqual(expect.objectContaining({
+      shadowOpacity: 0.5,
+      elevation: 4,
+      position: 'absolute',
+    }));
+
+    fireEvent.press(screen.getByTestId('second-option'));
+    expect(onPress).toHaveBeenCalledWith('second');
+    expect(Animated.timing).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ toValue: 1 / 3, useNativeDriver: true }),
+    );
+  });
+
   it('reverses animation positions in RTL', () => {
     const previousRTL = I18nManager.isRTL;
     I18nManager.isRTL = true;

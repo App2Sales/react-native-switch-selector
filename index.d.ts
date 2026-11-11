@@ -31,6 +31,7 @@ export interface ISwitchSelectorProps {
   selectedColor?: string;
   buttonMargin?: number;
   buttonColor?: string;
+  buttonStyle?: StyleProp<ViewStyle>;
   textColor?: string;
   backgroundColor?: string;
   borderColor?: string;

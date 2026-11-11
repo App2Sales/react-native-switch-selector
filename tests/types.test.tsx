@@ -22,6 +22,7 @@ const options: ISwitchSelectorOption[] = [
 const props: ISwitchSelectorProps = {
   options,
   borderWidth: 2,
+  buttonStyle: [styles.container, { shadowOpacity: 0.5 }, false],
   textStyle: [styles.text, { color: 'black' }],
   textContainerStyle: [styles.container, { padding: 4 }],
   selectedTextContainerStyle: styles.container,
@@ -40,5 +41,7 @@ const legacyContainerStyle = <SwitchSelector options={options} selectedTextConta
 const invalidValue = <SwitchSelector options={options} value="two" />;
 // @ts-expect-error options must contain labels and supported values
 const invalidOptions = <SwitchSelector options={[{ label: 'Invalid', value: false }]} />;
+// @ts-expect-error buttonStyle must be a view style
+const invalidButtonStyle = <SwitchSelector options={options} buttonStyle="shadow" />;
 
-void [valid, optionalCallback, nullCallback, legacyCallback, legacyContainerStyle, invalidValue, invalidOptions];
+void [valid, optionalCallback, nullCallback, legacyCallback, legacyContainerStyle, invalidValue, invalidOptions, invalidButtonStyle];

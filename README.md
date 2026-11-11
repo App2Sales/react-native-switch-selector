@@ -106,6 +106,7 @@ const options = [
 | selectedColor                | string                  | '#fff'      | false    | Color text of the item selected                                                  |
 | buttonMargin                 | number                  | 0           | false    | Margin of the item selected to component                                         |
 | buttonColor                  | string                  | '#BCD635'   | false    | Color bg of the item selected                                                    |
+| buttonStyle                  | View style              | {}          | false    | Style for the animated selection indicator, such as a shadow                     |
 | textColor                    | string                  | '#000'      | false    | Color text of the not selecteds items                                            |
 | backgroundColor              | string                  | '#ffffff'   | false    | Color bg of the component                                                        |
 | borderColor                  | string                  | '#c9c9c9'   | false    | Border Color of the component                                                    |
@@ -137,6 +138,10 @@ The declaration still accepts a string for `imageIcon` for backward compatibilit
 but React Native image sources should use a supported source such as `require(...)`
 or `{ uri: '...' }`. Selected text and container styles are used instead of their
 unselected counterparts, rather than being merged with them.
+
+`buttonStyle` is applied to the animated indicator after its calculated styles;
+overriding its dimensions or transform can affect layout or animation. The
+indicator's absolute positioning and zero border width are enforced by the library.
 
 ### Development and compatibility checks
 
