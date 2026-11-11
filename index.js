@@ -70,7 +70,7 @@ export default class SwitchSelector extends Component {
     if (selected === -1) {
       return 'transparent';
     }
-    return options[selected].activeColor || buttonColor;
+    return options[selected]?.activeColor || buttonColor;
   }
 
   responderEnd = (evt, gestureState) => {
@@ -145,6 +145,7 @@ export default class SwitchSelector extends Component {
       buttonMargin,
       buttonStyle,
       options,
+      touchableProps,
     } = this.props;
 
     const { selected, sliderWidth } = this.state;
@@ -154,9 +155,10 @@ export default class SwitchSelector extends Component {
 
       return (
         <TouchableOpacity
-          activeOpacity={activeOpacity}
+          {...touchableProps}
+          activeOpacity={activeOpacity ?? touchableProps?.activeOpacity ?? 0.2}
           key={index}
-          disabled={disabled}
+          disabled={disabled || element.disabled}
           style={[
             styles.button,
             isSelected ? selectedTextContainerStyle : textContainerStyle,
@@ -293,7 +295,6 @@ SwitchSelector.defaultProps = {
   buttonStyle: {},
   returnObject: false,
   animationDuration: 100,
-  activeOpacity: 0.2,
   disabled: false,
   disableValueChangeOnPress: false,
   initial: -1,
@@ -301,6 +302,7 @@ SwitchSelector.defaultProps = {
   onPress: null,
   accessibilityLabel: null,
   testID: null,
+  touchableProps: {},
 };
 
 SwitchSelector.propTypes = {
@@ -335,4 +337,5 @@ SwitchSelector.propTypes = {
   onPress: PropTypes.func,
   accessibilityLabel: PropTypes.string,
   testID: PropTypes.string,
+  touchableProps: PropTypes.object,
 };
