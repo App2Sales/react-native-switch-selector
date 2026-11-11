@@ -25,6 +25,15 @@ or
 npm i react-native-switch-selector --save
 ```
 
+React and React Native are peer dependencies and must be provided by the app.
+The peer dependency ranges are intentionally permissive; an installable version
+is not necessarily a tested version. The JavaScript and TypeScript compatibility
+checks cover React Native 0.76, 0.86, 0.87, and 0.88. They do not establish native
+platform compatibility on their own.
+
+A limited iOS simulator smoke test on React Native 0.88.1 verified rendering and
+a programmatic selection. Native touch gestures and Android have not been verified.
+
 ### Usage
 
 ```js
@@ -81,19 +90,19 @@ const options = [
 
 | Prop                         | Type                    | Default     | Required | Note                                                                             |
 | -------------------------    | ----------------------- | ----------- | -------- | -------------------------------------------------------------------------------- |
-| options                      | array                   | null        | true     | Items array to render. Each item has a label and a value and optionals icons     |
-| options[].label              | string                  | null        | true     | Label from each item                                                             |
-| options[].value              | string                  | null        | true     | Value from each item                                                             |
-| options[].customIcon         | Jsx element ou Function | null        | false    | Optional custom icon from each item                                              |
-| options[].imageIcon          | string                  | null        | false    | Source from a image icon form each item. Has the same color then label in render |
-| options[].activeColor        | string                  | null        | false    | Color from each item when is selected                                            |
+| options                      | array                   | []          | true     | Items to render. Each item has a label, value, and optional icons.                |
+| options[].label              | string                  | —           | true     | Label from each item                                                             |
+| options[].value              | string \| number        | —           | true     | Value from each item                                                             |
+| options[].customIcon         | React node \| function  | undefined   | false    | Icon or a function called with whether the item is selected                     |
+| options[].imageIcon          | Image source            | undefined   | false    | React Native image source, such as `require(...)` or `{ uri: '...' }`            |
+| options[].activeColor        | string                  | undefined   | false    | Color from each item when is selected                                            |
 | options[].testID             | string                  | undefined   | false    | Test ID for each item used for testing (e.g. with Appium)                        |
 | options[].accessibilityLabel | string                  | undefined   | false    | Accessibility Label for each item used for testing (e.g. with Appium)            |
-| initial                      | number                  | -1          | false    | Item selected in initial render                                                  |
-| value                        | number                  | undefined   | false    | The switch value (will call onPress)                                             |
-| onPress                      | function                | console.log | true     | Callback function called after change value.                                     |
-| disableValueChangeOnPress    | bool                    | false       | false    | Disables the onPress call when the value is manually changed                     |
-| fontSize                     | number                  | null        | false    | Font size from labels. If null default fontSize of the app is used.              |
+| initial                      | number                  | -1          | false    | Initially selected index; `-1` leaves all items unselected                      |
+| value                        | number                  | 1           | false    | Option index applied when this prop changes after mount; see `initial`           |
+| onPress                      | function                | null        | false    | Callback called with the selected value, or the option when `returnObject` is set |
+| disableValueChangeOnPress    | bool                    | false       | false    | Suppresses the onPress call when the `value` prop changes                        |
+| fontSize                     | number                  | 14          | false    | Font size from labels                                                            |
 | selectedColor                | string                  | '#fff'      | false    | Color text of the item selected                                                  |
 | buttonMargin                 | number                  | 0           | false    | Margin of the item selected to component                                         |
 | buttonColor                  | string                  | '#BCD635'   | false    | Color bg of the item selected                                                    |
@@ -102,7 +111,7 @@ const options = [
 | borderColor                  | string                  | '#c9c9c9'   | false    | Border Color of the component                                                    |
 | borderRadius                 | number                  | 50          | false    | Border Radius of the component                                                   |
 | hasPadding                   | bool                    | false       | false    | Indicate if item has padding                                                     |
-| animationDuration            | number                  | 250         | false    | Duration of the animation                                                        |
+| animationDuration            | number                  | 100         | false    | Duration of the animation, in milliseconds                                       |
 | valuePadding                 | number                  | 1           | false    | Size of padding                                                                  |
 | height                       | number                  | 40          | false    | Height of component                                                              |
 | bold                         | bool                    | false       | false    | Indicate if text has fontWeight bold                                             |
@@ -110,13 +119,44 @@ const options = [
 | selectedTextStyle            | object                  | {}          | false    | Selected text style                                                              |
 | textContainerStyle           | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle   | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
+| textCStyle                   | object                  | —           | false    | Deprecated type-only prop; ignored at runtime. Use `textContainerStyle`.          |
 | imageStyle                   | object                  | {}          | false    | Image style                                                                      |
 | style                        | object                  | {}          | false    | Container style                                                                  |
 | returnObject                 | bool                    | false       | false    | Indicate if onPress function return an option instead of option.value            |
-| disabled                     | bool                    | false       | false    | Disables the switch                                                              |
-| borderWidth                  | number                  | 1           | false    | Define border width                                                              |
+| disabled                     | bool                    | false       | false    | Disables presses and swipes; `value` can still change the selection              |
+| borderWidth                  | number                  | 1           | false    | Border width, applied when `hasPadding` is true                                  |
 | testID                       | string                  | null        | false    | Test ID used for testing (e.g. with Appium)                                      |
 | accessibilityLabel           | string                  | null        | false    | Accessibility Label used for testing (e.g. with Appium)                          |
+
+`initial` determines the selected index when the component is created. Changing
+`value` after mounting selects that index and normally calls `onPress`; the
+`disableValueChangeOnPress` prop suppresses that callback for prop-driven changes.
+When a selection change is processed without calling the callback, the current
+implementation logs the selected value.
+The declaration still accepts a string for `imageIcon` for backward compatibility,
+but React Native image sources should use a supported source such as `require(...)`
+or `{ uri: '...' }`. Selected text and container styles are used instead of their
+unselected counterparts, rather than being merged with them.
+
+### Development and compatibility checks
+
+Use Node 22.13 or newer in the Node 22 line, Node 24.3 or newer in the Node 24
+line, or Node 26 or newer. Install the development dependencies with `npm ci`,
+then run:
+
+```sh
+npm run lint
+npm test
+npm run typecheck
+npm run test:compatibility
+```
+
+The compatibility command packs the library and installs it into temporary
+consumer projects for each version listed above. It requires network access and
+can also run one version, for example `npm run test:compatibility -- 0.76`. It
+checks the library's declaration and a TypeScript consumer separately from
+React Native's own declaration files. The tests mock native APIs and do not
+replace iOS or Android runtime testing.
 
 ### Authors
 
