@@ -112,6 +112,26 @@ describe('SwitchSelector', () => {
     expect(textColor('First')).toBe('#FFFFFF');
   });
 
+  it('forwards the default and custom activeOpacity to every option', () => {
+    const onPress = jest.fn();
+    const { rerender } = render(<SwitchSelector options={options} initial={0} onPress={onPress} />);
+    const buttons = () => screen.UNSAFE_getAllByType(TouchableOpacity);
+
+    expect(buttons()).toHaveLength(options.length);
+    buttons().forEach((button) => expect(button.props.activeOpacity).toBe(0.2));
+
+    rerender(<SwitchSelector options={options} initial={0} onPress={onPress} activeOpacity={0} />);
+    buttons().forEach((button) => expect(button.props.activeOpacity).toBe(0));
+    fireEvent.press(screen.getByTestId('second-option'));
+    expect(onPress).toHaveBeenCalledWith('second');
+
+    rerender(<SwitchSelector options={options} initial={0} onPress={onPress} activeOpacity={0.7} disabled />);
+    buttons().forEach((button) => {
+      expect(button.props.activeOpacity).toBe(0.7);
+      expect(button.props.disabled).toBe(true);
+    });
+  });
+
   it('changes selection for a horizontal swipe and ignores slow swipes', () => {
     const onPress = jest.fn();
     const panResponder = jest.spyOn(PanResponder, 'create');

@@ -28,6 +28,7 @@ const props: ISwitchSelectorProps = {
   selectedTextContainerStyle: styles.container,
   textCStyle: styles.text,
   imageStyle: [styles.image, { opacity: 0.5 }],
+  activeOpacity: 0.5,
   style: styles.container,
   onPress: (value) => { void value; },
 };
@@ -35,6 +36,8 @@ const props: ISwitchSelectorProps = {
 const valid = <SwitchSelector {...props} />;
 const optionalCallback = <SwitchSelector options={options} />;
 const nullCallback = <SwitchSelector options={options} onPress={null} />;
+// @ts-expect-error activeOpacity is a number
+void (<SwitchSelector options={options} activeOpacity="0.5" />);
 const legacyCallback = <SwitchSelector options={options} onPress={(value: string) => { void value; }} />;
 const legacyContainerStyle = <SwitchSelector options={options} selectedTextContainerStyle={styles.text} />;
 // @ts-expect-error value is an option index, not an option value
