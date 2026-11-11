@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 });
 
 const options: ISwitchSelectorOption[] = [
-  { label: 'One', value: 1, imageIcon: 123 },
+  { label: 'One', value: 1, imageIcon: 123, disabled: true },
   { label: 'Two', value: 'two', imageIcon: { uri: 'https://example.com/icon.png' } },
   { label: 'Three', value: 3, imageIcon: 'legacy-string-source' },
   { label: 'Four', value: 4, customIcon: <Text>Icon</Text> },
@@ -29,6 +29,7 @@ const props: ISwitchSelectorProps = {
   textCStyle: styles.text,
   imageStyle: [styles.image, { opacity: 0.5 }],
   activeOpacity: 0.5,
+  touchableProps: { activeOpacity: 0.8, delayPressIn: 10 },
   style: styles.container,
   onPress: (value) => { void value; },
 };

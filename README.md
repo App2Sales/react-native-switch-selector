@@ -96,6 +96,7 @@ const options = [
 | options[].customIcon         | React node \| function  | undefined   | false    | Icon or a function called with whether the item is selected                     |
 | options[].imageIcon          | Image source            | undefined   | false    | React Native image source, such as `require(...)` or `{ uri: '...' }`            |
 | options[].activeColor        | string                  | undefined   | false    | Color from each item when is selected                                            |
+| options[].disabled           | bool                    | false       | false    | Disables presses on this option; swipes and `value` can still select it           |
 | options[].testID             | string                  | undefined   | false    | Test ID for each item used for testing (e.g. with Appium)                        |
 | options[].accessibilityLabel | string                  | undefined   | false    | Accessibility Label for each item used for testing (e.g. with Appium)            |
 | initial                      | number                  | -1          | false    | Initially selected index; `-1` leaves all items unselected                      |
@@ -121,6 +122,7 @@ const options = [
 | textContainerStyle           | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle   | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
 | activeOpacity                | number                  | 0.2         | false    | Opacity of an option while it is pressed                                         |
+| touchableProps               | TouchableOpacity props  | {}          | false    | Additional props forwarded to each option's TouchableOpacity                     |
 | textCStyle                   | object                  | —           | false    | Deprecated type-only prop; ignored at runtime. Use `textContainerStyle`.          |
 | imageStyle                   | object                  | {}          | false    | Image style                                                                      |
 | style                        | object                  | {}          | false    | Container style                                                                  |
@@ -143,6 +145,11 @@ unselected counterparts, rather than being merged with them.
 `buttonStyle` is applied to the animated indicator after its calculated styles;
 overriding its dimensions or transform can affect layout or animation. The
 indicator's absolute positioning and zero border width are enforced by the library.
+
+`touchableProps` supplies additional props to every option. The component's own
+`disabled`, `style`, `onPress`, `accessibilityLabel`, and `testID` take precedence.
+For opacity, an explicit `activeOpacity` takes precedence over
+`touchableProps.activeOpacity`; if neither is provided, it defaults to `0.2`.
 
 ### Development and compatibility checks
 

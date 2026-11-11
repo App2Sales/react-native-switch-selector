@@ -4,6 +4,7 @@ import {
   ImageStyle,
   StyleProp,
   TextStyle,
+  TouchableOpacityProps,
   ViewStyle,
 } from 'react-native';
 
@@ -13,6 +14,7 @@ export interface ISwitchSelectorOption {
   customIcon?: ReactNode | ((selected: boolean) => ReactNode);
   imageIcon?: ImageSourcePropType | string;
   activeColor?: string;
+  disabled?: boolean;
   accessibilityLabel?: string;
   testID?: string;
 }
@@ -52,6 +54,7 @@ export interface ISwitchSelectorProps {
   style?: StyleProp<ViewStyle>;
   returnObject?: boolean;
   activeOpacity?: number;
+  touchableProps?: TouchableOpacityProps;
   disabled?: boolean;
   disableValueChangeOnPress?: boolean;
   accessibilityLabel?: string;

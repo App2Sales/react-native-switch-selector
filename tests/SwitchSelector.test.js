@@ -132,6 +132,45 @@ describe('SwitchSelector', () => {
     });
   });
 
+  it('forwards touchableProps and lets an explicit activeOpacity override them', () => {
+    const { rerender } = render(
+      <SwitchSelector options={options} initial={0} touchableProps={{ activeOpacity: 0.6, delayPressIn: 25 }} />,
+    );
+    const buttons = () => screen.UNSAFE_getAllByType(TouchableOpacity);
+    buttons().forEach((button) => {
+      expect(button.props.activeOpacity).toBe(0.6);
+      expect(button.props.delayPressIn).toBe(25);
+    });
+
+    rerender(
+      <SwitchSelector options={options} initial={0} activeOpacity={0} touchableProps={{ activeOpacity: 0.6 }} />,
+    );
+    buttons().forEach((button) => expect(button.props.activeOpacity).toBe(0));
+  });
+
+  it('disables individual options for presses while retaining the existing swipe behavior', () => {
+    const onPress = jest.fn();
+    const panResponder = jest.spyOn(PanResponder, 'create');
+    const withDisabledOption = [options[0], { ...options[1], disabled: true }, options[2]];
+    render(<SwitchSelector options={withDisabledOption} initial={0} onPress={onPress} />);
+    const buttons = screen.UNSAFE_getAllByType(TouchableOpacity);
+
+    expect(buttons.find((option) => option.props.testID === 'second-option').props.disabled).toBe(true);
+    expect(buttons.find((option) => option.props.testID === 'first-option').props.disabled).toBeFalsy();
+    act(() => panResponder.mock.calls[0][0].onPanResponderRelease(null, { dx: 50, dy: 0, vx: 0.5 }));
+    expect(onPress).toHaveBeenCalledWith('second');
+  });
+
+  it('uses the button color when the initial index does not exist', () => {
+    render(<SwitchSelector options={options} initial={8} buttonColor="purple" />);
+    const layoutView = screen.UNSAFE_getAllByType(View).find((view) => view.props.onLayout);
+    fireEvent(layoutView, 'layout', { nativeEvent: { layout: { width: 300 } } });
+
+    const indicator = screen.UNSAFE_getAllByType(Animated.View)
+      .find((view) => StyleSheet.flatten(view.props.style).width === 100);
+    expect(StyleSheet.flatten(indicator.props.style).backgroundColor).toBe('purple');
+  });
+
   it('changes selection for a horizontal swipe and ignores slow swipes', () => {
     const onPress = jest.fn();
     const panResponder = jest.spyOn(PanResponder, 'create');
