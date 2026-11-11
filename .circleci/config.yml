@@ -1,9 +1,0 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: node
-    steps:
-      - checkout
-      - run: npm install
-      - run: ./node_modules/.bin/eslint index.js
