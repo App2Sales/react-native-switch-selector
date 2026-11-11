@@ -1,54 +1,59 @@
-declare module "react-native-switch-selector" {
-  import { Component } from "react";
-  import {
-    ImageStyle,
-    RegisteredStyle,
-    TextStyle,
-    ViewStyle
-  } from "react-native";
+import { Component, ReactNode } from 'react';
+import {
+  ImageSourcePropType,
+  ImageStyle,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
 
-  export interface ISwitchSelectorOption {
-    label: string;
-    value: string | number;
-    customIcon?: JSX.Element;
-    imageIcon?: string;
-    activeColor?: string;
-    accessibilityLabel?: string;
-    testID?: string;
-  }
-
-  export interface ISwitchSelectorProps {
-    options: ISwitchSelectorOption[];
-    initial?: number;
-    value?: number;
-    onPress(value: string | number | ISwitchSelectorOption): void;
-    fontSize?: number;
-    selectedColor?: string;
-    buttonMargin?: number;
-    buttonColor?: string;
-    textColor?: string;
-    backgroundColor?: string;
-    borderColor?: string;
-    borderRadius?: number;
-    hasPadding?: boolean;
-    animationDuration?: number;
-    valuePadding?: number;
-    height?: number;
-    bold?: boolean;
-    textStyle?: TextStyle | RegisteredStyle<TextStyle>;
-    selectedTextStyle?: TextStyle | RegisteredStyle<TextStyle>;
-    textCStyle?: TextStyle | RegisteredStyle<TextStyle>;
-    selectedTextContainerStyle?: TextStyle | RegisteredStyle<TextStyle>;
-    imageStyle?: ImageStyle | RegisteredStyle<ImageStyle>;
-    style?: ViewStyle | RegisteredStyle<ViewStyle>;
-    returnObject?: boolean;
-    disabled?: boolean;
-    disableValueChangeOnPress?: boolean;
-    accessibilityLabel?: string;
-    testID?: string;
-  }
-
-  class SwitchSelector extends Component<ISwitchSelectorProps> {}
-
-  export default SwitchSelector;
+export interface ISwitchSelectorOption {
+  label: string;
+  value: string | number;
+  customIcon?: ReactNode | ((selected: boolean) => ReactNode);
+  imageIcon?: ImageSourcePropType | string;
+  activeColor?: string;
+  accessibilityLabel?: string;
+  testID?: string;
 }
+
+// Keep the bivariance of the original onPress method declaration for existing consumers.
+type OnPressHandler = {
+  onPress(value: string | number | ISwitchSelectorOption): void;
+}['onPress'];
+
+export interface ISwitchSelectorProps {
+  options: ISwitchSelectorOption[];
+  initial?: number;
+  value?: number;
+  onPress?: OnPressHandler | null;
+  fontSize?: number;
+  selectedColor?: string;
+  buttonMargin?: number;
+  buttonColor?: string;
+  textColor?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  borderRadius?: number;
+  borderWidth?: number;
+  hasPadding?: boolean;
+  animationDuration?: number;
+  valuePadding?: number;
+  height?: number;
+  bold?: boolean;
+  textStyle?: StyleProp<TextStyle>;
+  selectedTextStyle?: StyleProp<TextStyle>;
+  /** @deprecated This prop is ignored. Use textContainerStyle instead. */
+  textCStyle?: StyleProp<TextStyle>;
+  textContainerStyle?: StyleProp<ViewStyle>;
+  selectedTextContainerStyle?: StyleProp<ViewStyle | TextStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
+  style?: StyleProp<ViewStyle>;
+  returnObject?: boolean;
+  disabled?: boolean;
+  disableValueChangeOnPress?: boolean;
+  accessibilityLabel?: string;
+  testID?: string;
+}
+
+export default class SwitchSelector extends Component<ISwitchSelectorProps> {}
