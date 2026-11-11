@@ -120,6 +120,7 @@ const options = [
 | selectedTextStyle            | object                  | {}          | false    | Selected text style                                                              |
 | textContainerStyle           | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle   | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
+| activeOpacity                | number                  | 0.2         | false    | Opacity of an option while it is pressed                                         |
 | textCStyle                   | object                  | —           | false    | Deprecated type-only prop; ignored at runtime. Use `textContainerStyle`.          |
 | imageStyle                   | object                  | {}          | false    | Image style                                                                      |
 | style                        | object                  | {}          | false    | Container style                                                                  |

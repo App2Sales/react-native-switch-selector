@@ -51,6 +51,7 @@ export interface ISwitchSelectorProps {
   imageStyle?: StyleProp<ImageStyle>;
   style?: StyleProp<ViewStyle>;
   returnObject?: boolean;
+  activeOpacity?: number;
   disabled?: boolean;
   disableValueChangeOnPress?: boolean;
   accessibilityLabel?: string;
