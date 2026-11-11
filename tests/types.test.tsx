@@ -22,11 +22,13 @@ const options: ISwitchSelectorOption[] = [
 const props: ISwitchSelectorProps = {
   options,
   borderWidth: 2,
+  buttonStyle: [styles.container, { shadowOpacity: 0.5 }, false],
   textStyle: [styles.text, { color: 'black' }],
   textContainerStyle: [styles.container, { padding: 4 }],
   selectedTextContainerStyle: styles.container,
   textCStyle: styles.text,
   imageStyle: [styles.image, { opacity: 0.5 }],
+  activeOpacity: 0.5,
   style: styles.container,
   onPress: (value) => { void value; },
 };
@@ -34,11 +36,15 @@ const props: ISwitchSelectorProps = {
 const valid = <SwitchSelector {...props} />;
 const optionalCallback = <SwitchSelector options={options} />;
 const nullCallback = <SwitchSelector options={options} onPress={null} />;
+// @ts-expect-error activeOpacity is a number
+void (<SwitchSelector options={options} activeOpacity="0.5" />);
 const legacyCallback = <SwitchSelector options={options} onPress={(value: string) => { void value; }} />;
 const legacyContainerStyle = <SwitchSelector options={options} selectedTextContainerStyle={styles.text} />;
 // @ts-expect-error value is an option index, not an option value
 const invalidValue = <SwitchSelector options={options} value="two" />;
 // @ts-expect-error options must contain labels and supported values
 const invalidOptions = <SwitchSelector options={[{ label: 'Invalid', value: false }]} />;
+// @ts-expect-error buttonStyle must be a view style
+const invalidButtonStyle = <SwitchSelector options={options} buttonStyle="shadow" />;
 
-void [valid, optionalCallback, nullCallback, legacyCallback, legacyContainerStyle, invalidValue, invalidOptions];
+void [valid, optionalCallback, nullCallback, legacyCallback, legacyContainerStyle, invalidValue, invalidOptions, invalidButtonStyle];

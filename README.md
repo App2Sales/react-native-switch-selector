@@ -106,6 +106,7 @@ const options = [
 | selectedColor                | string                  | '#fff'      | false    | Color text of the item selected                                                  |
 | buttonMargin                 | number                  | 0           | false    | Margin of the item selected to component                                         |
 | buttonColor                  | string                  | '#BCD635'   | false    | Color bg of the item selected                                                    |
+| buttonStyle                  | View style              | {}          | false    | Style for the animated selection indicator, such as a shadow                     |
 | textColor                    | string                  | '#000'      | false    | Color text of the not selecteds items                                            |
 | backgroundColor              | string                  | '#ffffff'   | false    | Color bg of the component                                                        |
 | borderColor                  | string                  | '#c9c9c9'   | false    | Border Color of the component                                                    |
@@ -119,6 +120,7 @@ const options = [
 | selectedTextStyle            | object                  | {}          | false    | Selected text style                                                              |
 | textContainerStyle           | object                  | {}          | false    | Style for text (and icon) container (TouchableOpacity)                           |
 | selectedTextContainerStyle   | object                  | {}          | false    | Style for selected text (and icon) container (TouchableOpacity)                  |
+| activeOpacity                | number                  | 0.2         | false    | Opacity of an option while it is pressed                                         |
 | textCStyle                   | object                  | —           | false    | Deprecated type-only prop; ignored at runtime. Use `textContainerStyle`.          |
 | imageStyle                   | object                  | {}          | false    | Image style                                                                      |
 | style                        | object                  | {}          | false    | Container style                                                                  |
@@ -137,6 +139,10 @@ The declaration still accepts a string for `imageIcon` for backward compatibilit
 but React Native image sources should use a supported source such as `require(...)`
 or `{ uri: '...' }`. Selected text and container styles are used instead of their
 unselected counterparts, rather than being merged with them.
+
+`buttonStyle` is applied to the animated indicator after its calculated styles;
+overriding its dimensions or transform can affect layout or animation. The
+indicator's absolute positioning and zero border width are enforced by the library.
 
 ### Development and compatibility checks
 
@@ -160,6 +166,7 @@ replace iOS or Android runtime testing.
 
 ### Authors
 
+- Samuel Bezerra Bispo - [samuelbezerrab](https://github.com/samuelbezerrab)
 - Lucas Santana Carneiro - [jkdrangel](https://github.com/jkdrangel)
 - Cássio Silva de Sá Santos - [ssscassio](https://github.com/ssscassio)
 - [Contributors](https://github.com/App2Sales/react-native-switch-selector/graphs/contributors)

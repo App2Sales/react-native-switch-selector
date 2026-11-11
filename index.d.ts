@@ -31,6 +31,7 @@ export interface ISwitchSelectorProps {
   selectedColor?: string;
   buttonMargin?: number;
   buttonColor?: string;
+  buttonStyle?: StyleProp<ViewStyle>;
   textColor?: string;
   backgroundColor?: string;
   borderColor?: string;
@@ -50,6 +51,7 @@ export interface ISwitchSelectorProps {
   imageStyle?: StyleProp<ImageStyle>;
   style?: StyleProp<ViewStyle>;
   returnObject?: boolean;
+  activeOpacity?: number;
   disabled?: boolean;
   disableValueChangeOnPress?: boolean;
   accessibilityLabel?: string;

@@ -112,6 +112,26 @@ describe('SwitchSelector', () => {
     expect(textColor('First')).toBe('#FFFFFF');
   });
 
+  it('forwards the default and custom activeOpacity to every option', () => {
+    const onPress = jest.fn();
+    const { rerender } = render(<SwitchSelector options={options} initial={0} onPress={onPress} />);
+    const buttons = () => screen.UNSAFE_getAllByType(TouchableOpacity);
+
+    expect(buttons()).toHaveLength(options.length);
+    buttons().forEach((button) => expect(button.props.activeOpacity).toBe(0.2));
+
+    rerender(<SwitchSelector options={options} initial={0} onPress={onPress} activeOpacity={0} />);
+    buttons().forEach((button) => expect(button.props.activeOpacity).toBe(0));
+    fireEvent.press(screen.getByTestId('second-option'));
+    expect(onPress).toHaveBeenCalledWith('second');
+
+    rerender(<SwitchSelector options={options} initial={0} onPress={onPress} activeOpacity={0.7} disabled />);
+    buttons().forEach((button) => {
+      expect(button.props.activeOpacity).toBe(0.7);
+      expect(button.props.disabled).toBe(true);
+    });
+  });
+
   it('changes selection for a horizontal swipe and ignores slow swipes', () => {
     const onPress = jest.fn();
     const panResponder = jest.spyOn(PanResponder, 'create');
@@ -169,6 +189,36 @@ describe('SwitchSelector', () => {
     const indicator = screen.UNSAFE_getAllByType(Animated.View)
       .find((view) => StyleSheet.flatten(view.props.style).width === 100);
     expect(indicator).toBeTruthy();
+  });
+
+  it('applies buttonStyle arrays to the animated indicator without affecting selection', () => {
+    const onPress = jest.fn();
+    const customStyles = StyleSheet.create({ shadow: { shadowOpacity: 0.5 } });
+    render(
+      <SwitchSelector
+        options={options}
+        initial={0}
+        onPress={onPress}
+        buttonStyle={[customStyles.shadow, { elevation: 4 }]}
+      />,
+    );
+    const layoutView = screen.UNSAFE_getAllByType(View).find((view) => view.props.onLayout);
+    fireEvent(layoutView, 'layout', { nativeEvent: { layout: { width: 300 } } });
+
+    const indicator = screen.UNSAFE_getAllByType(Animated.View)
+      .find((view) => StyleSheet.flatten(view.props.style).width === 100);
+    expect(StyleSheet.flatten(indicator.props.style)).toEqual(expect.objectContaining({
+      shadowOpacity: 0.5,
+      elevation: 4,
+      position: 'absolute',
+    }));
+
+    fireEvent.press(screen.getByTestId('second-option'));
+    expect(onPress).toHaveBeenCalledWith('second');
+    expect(Animated.timing).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ toValue: 1 / 3, useNativeDriver: true }),
+    );
   });
 
   it('reverses animation positions in RTL', () => {
