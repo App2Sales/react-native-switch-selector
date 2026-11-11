@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": false,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "customConditions": ["react-native"],
+    "jsx": "react-native",
+    "lib": ["ES2022"],
+    "types": ["react"],
+    "paths": {
+      "react-native-switch-selector": ["../index.d.ts"]
+    }
+  },
+  "include": ["types.test.tsx"]
+}
