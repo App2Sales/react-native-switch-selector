@@ -160,6 +160,8 @@ export default class SwitchSelector extends Component {
             isSelected ? selectedTextContainerStyle : textContainerStyle,
           ]}
           onPress={() => this.toggleItem(index)}
+          accessibilityLabel={element.accessibilityLabel}
+          testID={element.testID}
         >
           {typeof element.customIcon === 'function'
             ? element.customIcon(isSelected)
@@ -196,7 +198,11 @@ export default class SwitchSelector extends Component {
     });
 
     return (
-      <View style={[{ flexDirection: 'row' }, style]}>
+      <View
+        style={[{ flexDirection: 'row' }, style]}
+        accessibilityLabel={this.props.accessibilityLabel}
+        testID={this.props.testID}
+      >
         <View {...this.panResponder.panHandlers} style={{ flex: 1 }}>
           <View
             style={{
@@ -290,6 +296,8 @@ SwitchSelector.defaultProps = {
   initial: -1,
   value: 1,
   onPress: null,
+  accessibilityLabel: null,
+  testID: null,
 };
 
 SwitchSelector.propTypes = {
@@ -313,7 +321,7 @@ SwitchSelector.propTypes = {
   bold: PropTypes.bool,
   buttonMargin: PropTypes.number,
   buttonColor: PropTypes.string,
-  buttonStyle: PropTypes.object,
+  buttonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number, PropTypes.bool]),
   returnObject: PropTypes.bool,
   animationDuration: PropTypes.number,
   disabled: PropTypes.bool,
@@ -321,4 +329,6 @@ SwitchSelector.propTypes = {
   initial: PropTypes.number,
   value: PropTypes.number,
   onPress: PropTypes.func,
+  accessibilityLabel: PropTypes.string,
+  testID: PropTypes.string,
 };
