@@ -104,6 +104,7 @@ const options = [
 
 ### Authors
 
+- Samuel Bezerra Bispo - [samuelbezerrab](https://github.com/samuelbezerrab)
 - Lucas Santana Carneiro - [jkdrangel](https://github.com/jkdrangel)
 - Cássio Silva de Sá Santos - [ssscassio](https://github.com/ssscassio)
 - [Contributors](https://github.com/App2Sales/react-native-switch-selector/graphs/contributors)
